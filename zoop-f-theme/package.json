@@ -1,0 +1,14 @@
+{
+  "name": "@com.zooplus/zoop-f-theme",
+  "version": "1.0.0",
+  "description": "SCSS bootstrap theme for zooplus microfrontends",
+  "scripts": {
+    "version": "echo $npm_package_version"
+  },
+  "main": "scss/App.scss",
+  "author": "Zooplus",
+  "license": "UNLICENSED",
+  "peerDependencies": {
+    "bootstrap": "^4.5.3"
+  }
+}

@@ -1,0 +1,17 @@
+@import "variables";
+
+@import "node_modules/bootstrap/scss/bootstrap";
+
+@import "utils";
+@import "body";
+
+// Use BEM
+// Concepts :
+// __ for separating parent and child components
+// -- for separating component and component modifier
+// Examples :
+// .component-name--component-modifier
+// .component-name__child-component
+// .component-name__child-component--child-component-modifier
+// .component-name__child-component__grand-child-component
+// .component-name__child-component__grand-child-component--grand-child-component-modifier

@@ -1,0 +1,53 @@
+$primary: #ff6200;
+$ternary: #3c9700;
+$danger: #ff0000;
+$light: #ffffff;
+
+$theme-colors: ();
+$theme-colors: map-merge(
+  (
+    "primary": $primary,
+    "ternary": $ternary,
+    "danger": $danger,
+    "light": $light,
+  ),
+  $theme-colors
+);
+
+// $font-size-base: 0.875rem; // Assumes the browser default, typically `16px` -> 14px
+// $font-size-lg: ($font-size-base * 9/7); // default : * 1.25
+// $font-size-sm: ($font-size-base * 6/7); // default : * 0.875
+
+// $input-btn-padding-y: 0.22rem !default; // 0.375rem !default;
+// $input-btn-padding-x: 0.5rem !default; // 0.75rem !default;
+// $input-btn-padding-y-sm: 0.2rem !default; // 0.25rem !default;
+// $input-btn-padding-x-sm: 0.4rem !default; // 0.5rem !default;
+
+// $input-padding-y: 0.375rem; // $input-btn-padding-y !default;
+// $input-padding-x: 0.75rem; // $input-btn-padding-x !default;
+
+// $common-margin: 0.45rem;
+
+// $card-spacer-y: $common-margin; // default 0.75rem
+// $card-spacer-x: ($common-margin * 2); // 1.25rem !default;
+// $modal-inner-padding: ($common-margin * 2) $common-margin $common-margin; // 1rem !default
+// $form-group-margin-bottom: ($common-margin * 3/2); // 1rem !default
+// $grid-gutter-width: $common-margin * 2;
+
+// $border-radius: 0; // .25rem !default;
+// $border-radius-lg: 0; // .3rem !default;
+// $border-radius-sm: 0; // .2rem !default;
+
+// $btn-border-radius: 0; // default : $border-radius
+// $btn-border-radius-lg: 0; // default : $border-radius-lg
+// $btn-border-radius-sm: 0; // default : $border-radius-sm
+
+// $input-border-radius: 0; // default : $border-radius
+// $input-border-radius-lg: 0; // default : $border-radius-lg
+// $input-border-radius-sm: 0; // default : $border-radius-sm
+
+// $badge-border-radius: 0.25rem !default; // $border-radius !default;
+// $badge-pill-padding-x: 0.6em !default;
+// // Use a higher than normal value to ensure completely rounded edges when
+// // customizing padding or font-size on labels.
+// $badge-pill-border-radius: 10rem !default;

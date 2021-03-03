@@ -1,0 +1,38 @@
+openapi: 3.0.0
+# https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md
+info:
+  title: Zoop-poc-api
+  description: Zooplus POC
+  version: "1.0"
+servers:
+  - url: http://localhost:8080/v1
+paths:
+  /counter:
+    get:
+      operationId: getCounter
+      summary: Get counter value
+      description: Get counter value 
+      tags: ["Counter"]
+      responses:
+        200:
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: integer
+  /counter/increment:
+    get:
+      operationId: incrementCounter
+      summary: Increment the counter by 1
+      description: Increment the counter by 1
+      tags: ["Counter"]
+      responses:
+        200:
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: integer
+tags:
+  - name: Counter
+    description: Counter related methods

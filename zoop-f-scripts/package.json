@@ -1,0 +1,22 @@
+{
+  "name": "@com.zooplus/zoop-f-scripts",
+  "version": "1.0.0",
+  "description": "Script library",
+  "scripts": {
+    "version": "echo $npm_package_version"
+  },
+  "bin": {
+    "shop-script": "./shop-script/index.js"
+  },
+  "files": [
+    "/shop-script"
+  ],
+  "author": "Zooplus",
+  "license": "UNLICENSED",
+  "peerDependencies": {
+    "react": "^17.0.1"
+  },
+  "dependencies": {
+  },
+  "prettier": "./config/prettierrc"
+}
