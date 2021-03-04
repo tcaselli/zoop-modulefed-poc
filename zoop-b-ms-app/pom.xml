@@ -59,6 +59,10 @@
 			<artifactId>log4j-web</artifactId>
 			<groupId>org.apache.logging.log4j</groupId>
 		</dependency>
+    <dependency>
+      <artifactId>commons-lang3</artifactId>
+      <groupId>org.apache.commons</groupId>
+    </dependency>
 		<dependency>
 			<artifactId>jackson-databind-nullable</artifactId>
 			<groupId>org.openapitools</groupId>
@@ -85,6 +89,7 @@
 			<version>${springfox-swagger2.version}</version>
 		</dependency>
 	</dependencies>
+  
 	
 	<build>
 		<plugins>

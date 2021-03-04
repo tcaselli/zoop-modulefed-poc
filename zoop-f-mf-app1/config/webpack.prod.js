@@ -14,25 +14,23 @@ const paths = require('./paths');
 const deps = require('../package.json').dependencies;
 
 // Set by hand if you want to load environment variables from env file to test prod build without docker compose setting environment variables
-let PROD_BUILD_WITHOUT_DOCKER_COMPOSE = true; // Default to false;
+// let PROD_BUILD_WITHOUT_DOCKER_COMPOSE = true; // Default to false;
 
-if (PROD_BUILD_WITHOUT_DOCKER_COMPOSE) {
-  require('dotenv').config();
-}
+// if (PROD_BUILD_WITHOUT_DOCKER_COMPOSE) {
+const dotenv = require('dotenv').config();
+// }
 
 module.exports = merge(common, {
   mode: 'production',
   devtool: false,
   output: {
     path: paths.build,
-    publicPath: `http://${process.env.MF_PRODUCT_DOMAIN}:${process.env.MF_PRODUCT_PORT}/`,
+    publicPath: `http://${process.env.DOMAIN}:${process.env.PORT}/`,
     filename: 'assets/js/[name].[contenthash].bundle.js',
   },
   plugins: [
     new DefinePlugin({
-      'process.env': {
-        MOCK_WITH_MSW: false, // MSW must never be used in prod
-      },
+      'process.env': JSON.stringify(dotenv.parsed),
     }),
     // Extracts CSS into separate files.
     // Note: style-loader is for development, MiniCssExtractPlugin is for production.
@@ -46,7 +44,9 @@ module.exports = merge(common, {
       name: 'app1',
       filename: 'remoteEntry.js',
       exposes: {
-        './App1': './src/App.tsx',
+        './Card': './src/components/AppCard.tsx',
+        './Header': './src/components/Header.tsx',
+        './Counter': './src/components/Counter.tsx',
       },
       // ! Do not share treeshaked libraries, it breaks the optimisation.
       shared: [

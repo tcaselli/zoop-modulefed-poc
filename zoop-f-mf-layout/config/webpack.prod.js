@@ -14,11 +14,11 @@ const paths = require('./paths');
 const deps = require('../package.json').dependencies;
 
 // Set by hand if you want to load environment variables from env file to test prod build without docker compose setting environment variables
-let PROD_BUILD_WITHOUT_DOCKER_COMPOSE = true; // Default to false;
+// let PROD_BUILD_WITHOUT_DOCKER_COMPOSE = true; // Default to false;
 
-if (PROD_BUILD_WITHOUT_DOCKER_COMPOSE) {
-  require('dotenv').config();
-}
+// if (PROD_BUILD_WITHOUT_DOCKER_COMPOSE) {
+const dotenv = require('dotenv').config();
+// }
 
 module.exports = merge(common, {
   mode: 'production',
@@ -30,9 +30,7 @@ module.exports = merge(common, {
   },
   plugins: [
     new DefinePlugin({
-      'process.env': {
-        MOCK_WITH_MSW: false, // MSW must never be used in prod
-      },
+      'process.env': JSON.stringify(dotenv.parsed),
     }),
     // Extracts CSS into separate files.
     // Note: style-loader is for development, MiniCssExtractPlugin is for production.

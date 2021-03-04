@@ -988,7 +988,6 @@
     "@babel/preset-flow" "^7.12.13"
     "@babel/preset-react" "^7.12.13"
     "@babel/preset-typescript" "^7.12.17"
-    "@com.zooplus/zoop-f-eslint" "file:C:/Users/Thibaut/AppData/Local/Yarn/Cache/v6/npm-@com-zooplus-zoop-f-config-1.0.0-003fbdd1-e2c5-494c-9b6d-1af4f8850ddc-1614791828229/node_modules/@com.zooplus/zoop-f-eslint"
     "@testing-library/cypress" "^7.0.3"
     "@testing-library/jest-dom" "^5.11.9"
     "@testing-library/react" "^11.2.5"
@@ -1040,11 +1039,6 @@
     webpack-cli "^4.5.0"
     webpack-dev-server "^3.11.2"
     webpack-merge "^5.7.3"
-
-"@com.zooplus/zoop-f-eslint@file:../zoop-f-eslint":
-  version "1.0.0"
-  dependencies:
-    "@typescript-eslint/parser" "^4.8.2"
 
 "@com.zooplus/zoop-f-scripts@file:../zoop-f-scripts":
   version "1.0.0"
@@ -1752,7 +1746,7 @@
     eslint-scope "^5.0.0"
     eslint-utils "^2.0.0"
 
-"@typescript-eslint/parser@^4.15.1", "@typescript-eslint/parser@^4.8.2":
+"@typescript-eslint/parser@^4.15.1":
   version "4.16.1"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-4.16.1.tgz#3bbd3234dd3c5b882b2bcd9899bc30e1e1586d2a"
   integrity sha512-/c0LEZcDL5y8RyI1zLcmZMvJrsR6SM1uetskFkoh3dvqDKVXPsXI+wFB/CbVw7WkEyyTKobC1mUNp/5y6gRvXg==

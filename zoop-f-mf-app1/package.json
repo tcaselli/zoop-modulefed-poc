@@ -6,6 +6,7 @@
     "@com.zooplus/zoop-f-config": "file:../zoop-f-config",
     "@com.zooplus/zoop-f-scripts": "file:../zoop-f-scripts",
     "@com.zooplus/zoop-f-theme": "file:../zoop-f-theme",
+    "@com.zooplus/ms-app-sdk": "file:../zoop-f-libs/ms-app-sdk",
     "axios": "^0.21.0",
     "bootstrap": "^4.6.0",
     "react": "^17.0.1",

@@ -22,7 +22,6 @@
     "@babel/preset-flow": "^7.12.13",
     "@babel/preset-react": "^7.12.13",
     "@babel/preset-typescript": "^7.12.17",
-    "@com.zooplus/zoop-f-eslint": "file:../zoop-f-eslint",
     "@testing-library/cypress": "^7.0.3",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",

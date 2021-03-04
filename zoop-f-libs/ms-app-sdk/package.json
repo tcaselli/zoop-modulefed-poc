@@ -1,0 +1,30 @@
+{
+  "author": "Flavien Rebattet",
+  "version": "1.0.0",
+  "name": "@com.zooplus/ms-app-sdk",
+  "keywords": [
+    "axios",
+    "typescript",
+    "openapi-client",
+    "openapi-generator"
+  ],
+  "description": "SDK for ms-app, using open api spec",
+  "license": "Unlicense",
+  "main": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
+  "scripts": {
+    "codegen": "openapi-generator-cli generate -g typescript-axios -o src -i \"../../zoop-b-ms-app/src/main/resources/zoop-poc-api-v1.yaml\"",
+    "build": "yarn codegen && tsc src/index.ts --declaration --outDir dist/"
+  },
+  "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.1.21",
+    "@types/node": "^12.11.5",
+    "typescript": "^4.1.3"
+  },
+  "peerDependencies": {
+    "axios": ">= 0.19.2"
+  }
+}

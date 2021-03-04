@@ -30,17 +30,19 @@ export default class ImportWrapper extends Component<Props, State> {
     return (
       <React.Suspense
         fallback={
-          <div
-            style={{
-              height: '100vh',
-              width: '100vw',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <img src={logo} style={{ position: 'absolute', maxHeight: '80px' }} alt="Deerberg" />
-          </div>
+          this.props.fallback || (
+            <div
+              style={{
+                height: '100vh',
+                width: '100vw',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <img src={logo} style={{ position: 'absolute', maxHeight: '80px' }} alt="zoop" />
+            </div>
+          )
         }
       >
         {this.props.children}

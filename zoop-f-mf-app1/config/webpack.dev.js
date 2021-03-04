@@ -50,7 +50,9 @@ module.exports = merge(common, {
       name: 'app1',
       filename: 'remoteEntry.js',
       exposes: {
-        './App1': './src/App.tsx',
+        './Card': './src/components/AppCard.tsx',
+        './Header': './src/components/Header.tsx',
+        './Counter': './src/components/Counter.tsx',
       },
       // ! Do not share treeshaked libraries, it breaks the optimisation.
       shared: [

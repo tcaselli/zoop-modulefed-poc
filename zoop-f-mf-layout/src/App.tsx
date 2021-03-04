@@ -1,11 +1,11 @@
-import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
-import React, { useState } from 'react';
+import { Card, Col, Container, Form, Row } from 'react-bootstrap';
+import React, { Profiler, useCallback, useState } from 'react';
 
 import ErrorHandler from './components/ErrorHandler';
 
-const App = () => {
-  const App1 = React.lazy(() => import('app1/App1'));
-  const App2 = React.lazy(() => import('app2/App2'));
+const Layout = ({ children }) => {
+  const App1Card = React.lazy(() => import('app1/Card'));
+  const App1Header = React.lazy(() => import('app1/Header'));
 
   const [name, setName] = useState('');
 
@@ -15,7 +15,7 @@ const App = () => {
   };
 
   return (
-    <ErrorHandler>
+    <Profiler id="mf-layout" onRender={console.log}>
       <Container>
         <Row>
           <Col xs="12" lg={{ span: 8, offset: 2 }}>
@@ -27,14 +27,34 @@ const App = () => {
                   <Form.Control type="text" placeholder="Please enter your name..." value={name} onChange={onChange} />
                   <Form.Text className="text-muted">This name will be propagated to App1 via props</Form.Text>
                 </Form.Group>
-                <App1 className="mt-3" userName={name} />
-                <App2 className="mt-3" />
+                <ErrorHandler fallback={<p style={{ backgroundColor: 'blue' }}>load</p>}>
+                  <App1Card>
+                    <App1Header userName={name} />
+                  </App1Card>
+                </ErrorHandler>
+                {children}
               </Card.Body>
             </Card>
           </Col>
         </Row>
       </Container>
-    </ErrorHandler>
+    </Profiler>
+  );
+};
+
+const App = () => {
+  const App1Counter = React.lazy(() => import('app1/Counter'));
+  const App2 = React.lazy(() => import('app2/App2'));
+
+  return (
+    <Profiler id="mf-app" onRender={console.log}>
+      <Layout>
+        <ErrorHandler fallback={<p style={{ backgroundColor: 'red' }}>load</p>}>
+          <App1Counter />
+          <App2 />
+        </ErrorHandler>
+      </Layout>
+    </Profiler>
   );
 };
 
