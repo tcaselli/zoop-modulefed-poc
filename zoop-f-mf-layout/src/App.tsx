@@ -1,11 +1,13 @@
 import { Card, Col, Container, Form, Row } from 'react-bootstrap';
 import React, { Profiler, useCallback, useState } from 'react';
-
+import App1Header from 'app1/Header';
+import App1Card from 'app1/Card';
 import ErrorHandler from './components/ErrorHandler';
 
 const Layout = ({ children }) => {
-  const App1Card = React.lazy(() => import('app1/Card'));
-  const App1Header = React.lazy(() => import('app1/Header'));
+  // const App1Card = React.lazy(() => import('app1/Card'));
+
+  // const App1Header = React.lazy(() => import('app1/Header'));
 
   const [name, setName] = useState('');
 
@@ -27,11 +29,9 @@ const Layout = ({ children }) => {
                   <Form.Control type="text" placeholder="Please enter your name..." value={name} onChange={onChange} />
                   <Form.Text className="text-muted">This name will be propagated to App1 via props</Form.Text>
                 </Form.Group>
-                <ErrorHandler fallback={<p style={{ backgroundColor: 'blue' }}>load</p>}>
-                  <App1Card>
-                    <App1Header userName={name} />
-                  </App1Card>
-                </ErrorHandler>
+                <App1Card>
+                  <App1Header userName={name} />
+                </App1Card>
                 {children}
               </Card.Body>
             </Card>
