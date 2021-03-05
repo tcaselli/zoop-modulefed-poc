@@ -39,7 +39,7 @@
     "cypress:open": "shop-script cypress:open",
     "cypress:run": "shop-script cypress:run",
     "cypress:install": "shop-script cypress:install",
-    "postinstall": "concurrently \"cd ../zoop-f-mf-app1; yarn\" \"cd ../zoop-f-mf-app2; yarn\" \"cd ../zoop-b-ms-app; mvn install\""
+    "postinstall": "concurrently \"cd ../zoop-f-mf-app1; yarn\" \"cd ../zoop-f-mf-app2; yarn\""
   },
   "eslintConfig": {
     "extends": [

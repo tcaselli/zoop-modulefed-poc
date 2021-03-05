@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "module": "CommonJS",
+    "target": "esnext",
+    "module": "esnext",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     // Allow JavaScript files to be imported inside your project, instead of just .ts and .tsx files.
     "allowJs": true,

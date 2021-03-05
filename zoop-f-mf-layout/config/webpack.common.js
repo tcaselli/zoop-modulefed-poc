@@ -17,6 +17,9 @@ module.exports = {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
     mainFields: ['browser', 'module', 'main'],
   },
+  experiments: {
+    topLevelAwait: true,
+  },
   // These options change how loaders are resolved.
   // postcss-loader is in a nested node_module directory, to be able to resolve it we need to add this nested node_modules to the resolve loader
   resolveLoader: {

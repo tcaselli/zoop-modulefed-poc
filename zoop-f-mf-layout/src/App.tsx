@@ -1,14 +1,14 @@
 import { Card, Col, Container, Form, Row } from 'react-bootstrap';
-import React, { Profiler, useCallback, useState } from 'react';
-import App1Header from 'app1/Header';
-import App1Card from 'app1/Card';
+import React, { Profiler, ReactChild, useState } from 'react';
 import ErrorHandler from './components/ErrorHandler';
+const App1Card = (await import('app1/Card').catch((err) => console.log(err))).default;
+const App1Header = (await import('app1/Header').catch((err) => console.log(err))).default;
 
-const Layout = ({ children }) => {
-  // const App1Card = React.lazy(() => import('app1/Card'));
+interface LayoutProps {
+  children: ReactChild;
+}
 
-  // const App1Header = React.lazy(() => import('app1/Header'));
-
+const Layout = ({ children }: LayoutProps) => {
   const [name, setName] = useState('');
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {

@@ -13,5 +13,6 @@ module.exports = () => ({
     ['@babel/plugin-proposal-class-properties'],
     ['@babel/proposal-object-rest-spread'],
     ['@babel/plugin-transform-runtime'],
+    ['@babel/plugin-syntax-top-level-await'],
   ],
 });
