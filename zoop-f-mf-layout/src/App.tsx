@@ -1,8 +1,9 @@
 import { Card, Col, Container, Form, Row } from 'react-bootstrap';
 import React, { Profiler, ReactChild, useState } from 'react';
 import ErrorHandler from './components/ErrorHandler';
-const App1Card = (await import('app1/Card').catch((err) => console.log(err))).default;
-const App1Header = (await import('app1/Header').catch((err) => console.log(err))).default;
+
+const App1Card = (await import('app1/Card')).default;
+const App1Header = (await import('app1/Header')).default;
 
 interface LayoutProps {
   children: ReactChild;
