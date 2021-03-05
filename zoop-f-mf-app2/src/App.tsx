@@ -23,8 +23,8 @@ const App: React.FC<AppProps> = () => {
         <Card.Header>MF App2</Card.Header>
         <Card.Body>
           <Form.Group>
-            <Header>I am a typed header from shared component</Header>
-            <Button onClick={() => console.log('click')}>I am a typed button from shared component</Button>
+            <Header>I am a styled shared</Header>
+            <Button onClick={() => console.log('click')}>I am styled shared button</Button>
             <br />
             <Form.Label>Counter value: {count} </Form.Label>
             <Form.Control type="text" placeholder="" readOnly value={count} />

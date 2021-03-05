@@ -5,5 +5,5 @@ export interface HeaderProps {
 }
 
 export const Header = ({ children }: HeaderProps) => {
-  return <h1>{children}</h1>;
+  return <h1 className="text-ternary font-weight-light">{children}</h1>;
 };
