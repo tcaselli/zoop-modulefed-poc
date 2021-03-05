@@ -1,6 +1,7 @@
 import { Card, Form } from 'react-bootstrap';
 
 import React, { Profiler, useLayoutEffect } from 'react';
+import { Button, Header } from '@com.zooplus/f-shared';
 import { useCounter } from './hooks/useCounter';
 
 export type AppProps = {
@@ -22,6 +23,9 @@ const App: React.FC<AppProps> = () => {
         <Card.Header>MF App2</Card.Header>
         <Card.Body>
           <Form.Group>
+            <Header>I am a typed header from shared component</Header>
+            <Button onClick={() => console.log('click')}>I am a typed button from shared component</Button>
+            <br />
             <Form.Label>Counter value: {count} </Form.Label>
             <Form.Control type="text" placeholder="" readOnly value={count} />
             <Form.Text className="text-muted">

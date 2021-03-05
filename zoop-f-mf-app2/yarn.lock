@@ -977,6 +977,9 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@com.zooplus/f-shared@file:../zoop-f-libs/f-shared":
+  version "0.1.0"
+
 "@com.zooplus/ms-app-sdk@file:../zoop-f-libs/ms-app-sdk":
   version "1.0.0"
 

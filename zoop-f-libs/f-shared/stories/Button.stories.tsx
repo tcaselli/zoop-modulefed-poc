@@ -20,7 +20,7 @@ const meta: Meta = {
 export default meta;
 
 const Template: Story<ButtonProps> = args => (
-  <Button {...args} handleClick={() => console.log('I am clicking')} />
+  <Button {...args} onClick={() => console.log('I am clicking')} />
 );
 
 // By passing using the Args format for exported stories, you can control the props for a component for reuse in a test

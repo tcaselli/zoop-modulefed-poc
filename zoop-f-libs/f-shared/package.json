@@ -34,7 +34,7 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "f-shared",
+  "name": "@com.zooplus/f-shared",
   "author": "Flavien Rebattet",
   "module": "dist/f-shared.esm.js",
   "size-limit": [

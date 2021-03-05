@@ -2,9 +2,9 @@ import React, { ReactChild } from 'react';
 
 export interface ButtonProps {
   children: ReactChild;
-  handleClick: () => void;
+  onClick: () => void;
 }
 
-export const Button = ({ children, handleClick }: ButtonProps) => {
-  return <button onClick={handleClick}>{children}</button>;
+export const Button = ({ children, onClick }: ButtonProps) => {
+  return <button onClick={onClick}>{children}</button>;
 };

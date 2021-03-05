@@ -26,7 +26,6 @@ App2 standalone is available at : http://localhost:1902
 
 ## TODO list
 
-- Add shared components
 - Add POC for usage of NextJS
 - Add Zooplus logo on top. (available in zoop-f-mf-layout/src/assets/zooplus.jpg)
 - Make changes in zoop-f-theme rebuild the css in MFs
