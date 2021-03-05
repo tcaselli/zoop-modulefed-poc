@@ -23,12 +23,13 @@
     "@types/react-dom": "^17.0.1",
     "@types/react-router-dom": "^5.1.6",
     "compression": "^1.7.4",
+    "concurrently": "^6.0.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "identity-obj-proxy": "^3.0.0"
   },
   "scripts": {
-    "start": "shop-script start",
+    "start": "concurrently \"shop-script start\" \"cd ../zoop-f-mf-app1; yarn start\" \"cd ../zoop-f-mf-app2; yarn start\" \"cd ../zoop-b-ms-app; mvn spring-boot:run\"",
     "build": "shop-script build",
     "bundle-analysis": "shop-script bundle-analysis",
     "static-analysis": "shop-script static-analysis",
@@ -37,7 +38,8 @@
     "jest:once": "shop-script jest:once",
     "cypress:open": "shop-script cypress:open",
     "cypress:run": "shop-script cypress:run",
-    "cypress:install": "shop-script cypress:install"
+    "cypress:install": "shop-script cypress:install",
+    "postinstall": "concurrently \"cd ../zoop-f-mf-app1; yarn\" \"cd ../zoop-f-mf-app2; yarn\" \"cd ../zoop-b-ms-app; mvn install\""
   },
   "eslintConfig": {
     "extends": [
