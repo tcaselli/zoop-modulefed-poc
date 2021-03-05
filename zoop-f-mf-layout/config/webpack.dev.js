@@ -51,6 +51,7 @@ module.exports = merge(common, {
       remotes: {
         app1: `app1@http://${process.env.MF_APP1_DOMAIN}:${process.env.MF_APP1_PORT}/remoteEntry.js`,
         app2: `app2@http://${process.env.MF_APP2_DOMAIN}:${process.env.MF_APP2_PORT}/remoteEntry.js`,
+        app3: `app3@http://${process.env.MF_APP3_DOMAIN}:${process.env.MF_APP3_PORT}/_next/static/runtime/remoteEntry.js`,
       },
       // ! Do not share treeshaked libraries, it breaks the optimisation.
       shared: {

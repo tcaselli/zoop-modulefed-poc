@@ -7,7 +7,7 @@ declare module 'app1/Card' {
 
 declare module 'app1/Header' {
   // eslint-disable-next-line no-undef
-  const App1Header: React.ComponentTypev;
+  const App1Header: React.ComponentType<{ userName: string }>;
 
   export default App1Header;
 }
