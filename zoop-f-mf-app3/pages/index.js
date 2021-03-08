@@ -32,9 +32,14 @@ const Home = () => (
       <title>Home</title>
       <link rel='icon' href='/favicon.ico' />
     </Head>
-    <Title />
+
+    <div className='text-center'>
+      <Title />
+    </div>
     <Nav />
-    <RemoteComponent scope='app1' module='./Counter'></RemoteComponent>
+    <div className='d-flex justify-content-center w-100'>
+      <RemoteComponent scope='app1' module='./Counter'></RemoteComponent>
+    </div>
 
     <div className='hero'>
       <h1 className='title'>
