@@ -10,7 +10,7 @@ class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <script crossorigin src='http://localhost:1901/remoteEntry.js' />
+        <script src='http://localhost:1901/remoteEntry.js' />
         <Head />
         <body>
           <Main />
