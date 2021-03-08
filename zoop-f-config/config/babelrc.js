@@ -14,5 +14,6 @@ module.exports = () => ({
     ['@babel/proposal-object-rest-spread'],
     ['@babel/plugin-transform-runtime'],
     ['@babel/plugin-syntax-top-level-await'],
+    ['@babel/plugin-syntax-jsx'],
   ],
 });

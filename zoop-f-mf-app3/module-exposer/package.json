@@ -1,17 +1,12 @@
 {
-  "name": "zoop-f-mf-layout",
-  "version": "1.0.0-SNAPSHOT",
+  "name": "zoop-f-mf-app3-module",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "@com.zooplus/zoop-f-config": "file:../zoop-f-config",
-    "@com.zooplus/zoop-f-scripts": "file:../zoop-f-scripts",
-    "@com.zooplus/zoop-f-theme": "file:../zoop-f-theme",
-    "axios": "^0.21.0",
-    "bootstrap": "^4.6.0",
+    "@com.zooplus/zoop-f-config": "file:./../../zoop-f-config",
+    "@com.zooplus/zoop-f-scripts": "file:./../../zoop-f-scripts",
     "react": "^17.0.1",
-    "react-bootstrap": "^1.5.0",
-    "react-dom": "^17.0.1",
-    "react-router-dom": "^5.2.0"
+    "react-dom": "^17.0.1"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.9",
@@ -23,13 +18,12 @@
     "@types/react-dom": "^17.0.1",
     "@types/react-router-dom": "^5.1.6",
     "compression": "^1.7.4",
-    "concurrently": "^6.0.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "identity-obj-proxy": "^3.0.0"
   },
   "scripts": {
-    "start": "concurrently \"shop-script start\" \"cd ../zoop-f-mf-app1; yarn start\" \"cd ../zoop-f-mf-app2; yarn start\" \"cd ../zoop-f-mf-app3/module-exposer; yarn start\" \"cd ../zoop-b-ms-app; mvn spring-boot:run\"",
+    "start": "shop-script start",
     "build": "shop-script build",
     "bundle-analysis": "shop-script bundle-analysis",
     "static-analysis": "shop-script static-analysis",
@@ -38,8 +32,7 @@
     "jest:once": "shop-script jest:once",
     "cypress:open": "shop-script cypress:open",
     "cypress:run": "shop-script cypress:run",
-    "cypress:install": "shop-script cypress:install",
-    "postinstall": "concurrently \"cd ../zoop-f-mf-app1; yarn\" \"cd ../zoop-f-mf-app2; yarn\" \"cd ../zoop-f-mf-app3; yarn\""
+    "cypress:install": "shop-script cypress:install"
   },
   "eslintConfig": {
     "extends": [
@@ -54,11 +47,6 @@
     ".*.js",
     "*.js"
   ],
-  "babel": {
-    "presets": [
-      "./node_modules/@com.zooplus/zoop-f-config/config/babelrc"
-    ]
-  },
   "husky": {
     "hooks": {
       "pre-commit": "shop-script pre-commit"

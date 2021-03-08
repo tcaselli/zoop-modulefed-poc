@@ -1,27 +1,23 @@
 const path = require("path");
 const { MergeRuntime, withModuleFederation } = require("@module-federation/nextjs-mf");
+const deps = require("./package.json").dependencies;
 
 module.exports = {
   future: { webpack5: true },
   webpack: (config, options) => {
     const { buildId, dev, isServer, defaultLoaders, webpack } = options;
     const mfConf = {
-      mergeRuntime: true, // experimental
-      name: "app3",
+      // mergeRuntime: true, // experimental
+      name: "app3/consumer",
       filename: "static/runtime/remoteEntry.js",
-      exposes: {
-        "./exposedTitle": "./components/exposedTitle",
-      },
-      remotes: {
-        layout: isServer
-          ? path.resolve(__dirname, "../zoop-f-mf-layout/dist/remoteEntry.js")
-          : "layout",
-      },
+      exposes: {},
+      remotes: {},
     };
+    withModuleFederation(config, options, mfConf);
+
     if (!isServer) {
       config.output.publicPath = "http://localhost:1903/_next/";
     }
-    withModuleFederation(config, options, mfConf);
     return config;
   },
   webpackDevMiddleware: (config) => {

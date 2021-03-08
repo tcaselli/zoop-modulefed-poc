@@ -4,7 +4,6 @@ import ErrorHandler from './components/ErrorHandler';
 
 const App1Card = (await import('app1/Card')).default;
 const App1Header = (await import('app1/Header')).default;
-const App3Title = (await import('app3/exposedTitle')).default;
 
 interface LayoutProps {
   children: ReactChild;
@@ -31,7 +30,6 @@ const Layout = ({ children }: LayoutProps) => {
                   <Form.Control type="text" placeholder="Please enter your name..." value={name} onChange={onChange} />
                   <Form.Text className="text-muted">This name will be propagated to App1 via props</Form.Text>
                 </Form.Group>
-                <App3Title />
                 <App1Card>
                   <App1Header userName={name} />
                 </App1Card>
@@ -48,6 +46,7 @@ const Layout = ({ children }: LayoutProps) => {
 const App = () => {
   const App1Counter = React.lazy(() => import('app1/Counter'));
   const App2 = React.lazy(() => import('app2/App2'));
+  const App3Title = React.lazy(() => import('app3/Title'));
 
   return (
     <Profiler id="mf-app" onRender={console.log}>
@@ -55,6 +54,7 @@ const App = () => {
         <ErrorHandler fallback={<p style={{ backgroundColor: 'red' }}>load</p>}>
           <App1Counter />
           <App2 />
+          <App3Title />
         </ErrorHandler>
       </Layout>
     </Profiler>

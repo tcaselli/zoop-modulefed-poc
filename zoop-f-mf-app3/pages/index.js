@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import { Title } from "../components/Title";
 const Nav = (await import("../components/nav")).default;
 const _ = await import("lodash");
 console.log("lodash is shared", _);
@@ -9,7 +10,7 @@ const Home = () => (
       <title>Home</title>
       <link rel='icon' href='/favicon.ico' />
     </Head>
-
+    <Title />
     <Nav />
 
     <div className='hero'>

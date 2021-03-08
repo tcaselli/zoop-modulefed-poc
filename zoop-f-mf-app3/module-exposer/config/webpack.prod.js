@@ -40,36 +40,14 @@ module.exports = merge(common, {
       chunkFilename: 'assets/css/[id].css',
     }),
     // ModuleFederation configuration
-    // Module federation
     new ModuleFederationPlugin({
-      name: 'layout',
-      remotes: {
-        app1: `app1@http://${process.env.MF_APP1_DOMAIN}:${process.env.MF_APP1_PORT}/remoteEntry.js`,
-        app2: `app2@http://${process.env.MF_APP2_DOMAIN}:${process.env.MF_APP2_PORT}/remoteEntry.js`,
-        app3: `app3@http://${process.env.MF_APP3_DOMAIN}:${process.env.MF_APP3_PORT}/remoteEntry.js`,
+      name: 'app3',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './Title': '../components/Title.js',
       },
       // ! Do not share treeshaked libraries, it breaks the optimisation.
-      shared: {
-        react: {
-          // eager: load the chunk synchronously, allow to be sure that it is downloaded first then shared and not duplicated by remotes
-          eager: true,
-          requiredVersion: deps.react,
-          singleton: true,
-        },
-        'react-dom': {
-          eager: true,
-          singleton: true,
-          requiredVersion: deps['react-dom'],
-        },
-        'react-router-dom': {
-          singleton: true,
-          requiredVersion: deps['react-router-dom'],
-        },
-        axios: {
-          singleton: true,
-          requiredVersion: deps.axios,
-        },
-      },
+      shared: [{ react: { requiredVersion: deps.react } }, { 'react-dom': { requiredVersion: deps['react-dom'] } }],
     }),
     new BundleAnalyzerPlugin({
       analyzerMode: 'disabled',

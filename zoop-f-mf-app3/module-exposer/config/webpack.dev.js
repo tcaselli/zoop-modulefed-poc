@@ -5,7 +5,6 @@ const paths = require('./paths');
 const HotModuleReplacementPlugin = require('webpack').HotModuleReplacementPlugin;
 const ModuleFederationPlugin = require('webpack').container.ModuleFederationPlugin;
 const DefinePlugin = require('webpack').DefinePlugin;
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { devModuleRulesBase } = require('@com.zooplus/zoop-f-config/config/webpack');
 const deps = require('../package.json').dependencies;
 
@@ -47,47 +46,16 @@ module.exports = merge(common, {
     }),
     // Module federation
     new ModuleFederationPlugin({
-      name: 'layout',
-      remotes: {
-        app1: `app1@http://${process.env.MF_APP1_DOMAIN}:${process.env.MF_APP1_PORT}/remoteEntry.js`,
-        app2: `app2@http://${process.env.MF_APP2_DOMAIN}:${process.env.MF_APP2_PORT}/remoteEntry.js`,
-        app3: `app3@http://${process.env.MF_APP3_DOMAIN}:${process.env.MF_APP3_PORT}/remoteEntry.js`,
+      name: 'app3',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './Title': '../components/Title.js',
       },
       // ! Do not share treeshaked libraries, it breaks the optimisation.
-      shared: {
-        react: {
-          requiredVersion: deps.react,
-          singleton: true,
-        },
-        'react-dom': {
-          singleton: true,
-          requiredVersion: deps['react-dom'],
-        },
-        'react-router-dom': {
-          singleton: true,
-          requiredVersion: deps['react-router-dom'],
-        },
-        axios: {
-          singleton: true,
-          requiredVersion: deps.axios,
-        },
-      },
+      shared: [{ react: { requiredVersion: deps.react } }, { 'react-dom': { requiredVersion: deps['react-dom'] } }],
     }),
   ],
   module: {
     rules: [...devModuleRulesBase],
   },
 });
-// Copy service worker for MSW (if env var is enabled) to build directory
-if (Boolean(JSON.parse(process.env.MOCK_WITH_MSW))) {
-  module.exports.plugins.push(
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: `${paths.src}/services/msw/mockServiceWorker.js`,
-          to: `${paths.build}`,
-        },
-      ],
-    }),
-  );
-}

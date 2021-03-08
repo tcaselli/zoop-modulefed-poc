@@ -1,6 +1,6 @@
-declare module 'app3/exposedTitle' {
+declare module 'app3/Title' {
   // eslint-disable-next-line no-undef
-  const App3ExposedTitle: React.ComponentType;
+  const App3Title: React.ComponentType;
 
-  export default App3ExposedTitle;
+  export default App3Title;
 }
