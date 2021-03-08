@@ -49,7 +49,7 @@ public class ApplicationStarter {
 								Stream.of(HttpMethod.GET, HttpMethod.DELETE, HttpMethod.POST, HttpMethod.PUT, HttpMethod.HEAD)
 										.map(Object::toString)
 										.toArray(String[]::new))
-						.allowedOrigins("http://localhost:1900","http://localhost:1901","http://localhost:1902")	
+						.allowedOrigins("http://localhost:1900","http://localhost:1901","http://localhost:1902","http://localhost:1903","http://localhost:1904")	
 						.allowedHeaders("*");
 			}
 		};

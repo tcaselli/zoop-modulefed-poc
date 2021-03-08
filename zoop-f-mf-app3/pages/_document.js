@@ -10,7 +10,7 @@ class MyDocument extends Document {
   render() {
     return (
       <Html>
-        {sharePatch()}
+        <script crossorigin src='http://localhost:1901/remoteEntry.js' />
         <Head />
         <body>
           <Main />

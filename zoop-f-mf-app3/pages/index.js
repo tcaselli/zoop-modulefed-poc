@@ -1,9 +1,31 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import Head from "next/head";
 import { Title } from "../components/Title";
-const Nav = (await import("../components/nav")).default;
-const _ = await import("lodash");
-console.log("lodash is shared", _);
+import Nav from "../components/nav";
+import { dependencies } from "./../package.json";
+
+const RemoteComponent = ({ scope, module, ...props }) => {
+  if (!global[scope]) {
+    return null;
+  }
+
+  global[scope].init({
+    react: {
+      [dependencies.react]: {
+        get: () => Promise.resolve().then(() => () => require("react")),
+      },
+    },
+  });
+
+  const Component = lazy(() => global[scope].get(module).then((factory) => factory()));
+
+  return (
+    <Suspense fallback={null}>
+      <Component {...props} />
+    </Suspense>
+  );
+};
+
 const Home = () => (
   <div>
     <Head>
@@ -12,6 +34,7 @@ const Home = () => (
     </Head>
     <Title />
     <Nav />
+    <RemoteComponent scope='app1' module='./Counter'></RemoteComponent>
 
     <div className='hero'>
       <h1 className='title'>
