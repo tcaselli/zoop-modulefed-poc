@@ -1,30 +1,8 @@
-import React, { lazy, Suspense } from "react";
+import React from "react";
 import Head from "next/head";
-import { Title } from "../components/Title";
-import Nav from "../components/nav";
-import { dependencies } from "./../package.json";
 
-const RemoteComponent = ({ scope, module, ...props }) => {
-  if (!global[scope]) {
-    return null;
-  }
-
-  global[scope].init({
-    react: {
-      [dependencies.react]: {
-        get: () => Promise.resolve().then(() => () => require("react")),
-      },
-    },
-  });
-
-  const Component = lazy(() => global[scope].get(module).then((factory) => factory()));
-
-  return (
-    <Suspense fallback={null}>
-      <Component {...props} />
-    </Suspense>
-  );
-};
+const Nav = (await import("../components/nav")).default;
+const Header = (await import("app1/Header")).default;
 
 const Home = () => (
   <div>
@@ -33,12 +11,10 @@ const Home = () => (
       <link rel='icon' href='/favicon.ico' />
     </Head>
 
-    <div className='text-center'>
-      <Title />
-    </div>
+    <div className='text-center'></div>
     <Nav />
     <div className='d-flex justify-content-center w-100'>
-      <RemoteComponent scope='app1' module='./Counter'></RemoteComponent>
+      <Header />
     </div>
 
     <div className='hero'>
@@ -113,5 +89,9 @@ const Home = () => (
     `}</style>
   </div>
 );
+
+// Home.getInitialProps = async (ctx) => {
+//   return {};
+// };
 
 export default Home;

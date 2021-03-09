@@ -1,5 +1,8 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
-const sharePatch = require("@module-federation/nextjs-mf/patchSharing");
+const {
+  patchSharingReact,
+  patchSharingReactDom,
+} = require("@module-federation/nextjs-mf/patchSharing");
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -10,7 +13,9 @@ class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <script src='http://localhost:1901/remoteEntry.js' />
+        {patchSharingReact()}
+        {patchSharingReactDom()}
+        {/* <script src='http://localhost:1901/remoteEntry.js' /> */}
         <Head />
         <body>
           <Main />
