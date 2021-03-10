@@ -2,8 +2,8 @@ import React from "react";
 import Head from "next/head";
 
 const Nav = (await import("../components/nav")).default;
-const Counter = (await import("app1/Counter")).default;
-// const Header = (await import("app1/Header")).default;
+// const Counter = (await import("app1/Counter")).default;
+const Header = (await import("app1/Header")).default;
 
 const Home = () => (
   <div>
@@ -13,9 +13,10 @@ const Home = () => (
     </Head>
 
     <div className='text-center'></div>
-    <Counter />
     <Nav />
-    <div className='d-flex justify-content-center w-100'>{/* <Counter /> */}</div>
+    <div className='d-flex justify-content-center w-100'>
+      <Header />
+    </div>
 
     <div className='hero'>
       <h1 className='title'>
