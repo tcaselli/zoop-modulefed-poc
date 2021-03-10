@@ -46,7 +46,6 @@ const Layout = ({ children }: LayoutProps) => {
 const App = () => {
   const App1Counter = React.lazy(() => import('app1/Counter'));
   const App2 = React.lazy(() => import('app2/App2'));
-  const App3Title = React.lazy(() => import('app3/Title'));
 
   return (
     <Profiler id="mf-app" onRender={console.log}>
@@ -54,7 +53,6 @@ const App = () => {
         <ErrorHandler fallback={<p style={{ backgroundColor: 'red' }}>load</p>}>
           <App1Counter />
           <App2 />
-          <App3Title />
         </ErrorHandler>
       </Layout>
     </Profiler>
