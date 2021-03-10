@@ -1,15 +1,24 @@
-import React, { Profiler } from 'react';
+import React, { Profiler, useEffect } from 'react';
 import Alert from 'react-bootstrap/esm/Alert';
+import { useInput } from '@com.zooplus/f-shared';
 
 interface Props {
-  userName: string | undefined;
+  id?: string;
 }
 
-export default function Header({ userName }: Props) {
+export default function Header({ id = 'header' }: Props) {
+  const { value, status, init, subscribe } = useInput({ id });
+
+  useEffect(() => {
+    init();
+  }, [init]);
+
+  subscribe();
+
   return (
     <Profiler id="Header" onRender={console.log}>
       <Alert variant="info">
-        Hello <span>{userName || <i>#NO NAME#</i>}</span>
+        Hello <span>{value || <i>#NO NAME#</i>}</span>
       </Alert>
     </Profiler>
   );

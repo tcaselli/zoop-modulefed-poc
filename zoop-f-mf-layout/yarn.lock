@@ -977,12 +977,17 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@com.zooplus/f-shared@file:../zoop-f-libs/f-shared":
+  version "0.1.0"
+
 "@com.zooplus/zoop-f-config@file:../zoop-f-config":
   version "1.0.0"
   dependencies:
     "@babel/core" "^7.12.17"
     "@babel/plugin-proposal-class-properties" "^7.12.13"
     "@babel/plugin-proposal-object-rest-spread" "^7.12.13"
+    "@babel/plugin-syntax-jsx" "^7.12.13"
+    "@babel/plugin-syntax-top-level-await" "^7.12.13"
     "@babel/plugin-transform-runtime" "^7.12.17"
     "@babel/preset-env" "^7.12.17"
     "@babel/preset-flow" "^7.12.13"

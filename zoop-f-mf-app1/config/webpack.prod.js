@@ -54,6 +54,9 @@ module.exports = merge(common, {
         { 'react-dom': { requiredVersion: deps['react-dom'] } },
         'react-router-dom',
         'axios',
+        'redux',
+        'react-redux',
+        '@reduxjs/toolkit',
       ],
     }),
     new BundleAnalyzerPlugin({

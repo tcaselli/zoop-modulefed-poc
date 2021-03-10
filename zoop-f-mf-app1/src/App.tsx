@@ -5,13 +5,12 @@ import AppCard from './components/AppCard';
 
 export type AppProps = {
   className?: string;
-  userName?: string;
 };
 
-const App: React.FC<AppProps> = ({ className, userName }) => {
+const App: React.FC<AppProps> = ({ className }) => {
   return (
     <AppCard className={className}>
-      <Header userName={userName} />
+      <Header />
       <Counter />
     </AppCard>
   );
