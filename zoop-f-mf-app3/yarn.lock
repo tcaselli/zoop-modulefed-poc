@@ -62,10 +62,8 @@
   resolved "https://registry.yarnpkg.com/@hapi/hoek/-/hoek-9.1.1.tgz#9daf5745156fd84b8e9889a2dc721f0c58e894aa"
   integrity sha512-CAEbWH7OIur6jEOzaai83jq3FmKmv4PmX1JYfs9IrYcGEVI/lyL1EXJGCj7eFVJ0bg5QR8LMxBlEtA+xKiLpFw==
 
-"@module-federation/nextjs-mf@0.1.0":
+"@module-federation/nextjs-mf@file:../zoop-f-libs/nextjs-mf":
   version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@module-federation/nextjs-mf/-/nextjs-mf-0.1.0.tgz#9b3e956fedbff49a661599fe8d391f51e42abfe7"
-  integrity sha512-7M8YHQ2aVn6U6EmLih2cI15rixIywApmlAXROC8cwPvRFC9Y/EORbSdRFTYzMStED3Vn9may5oQPBU+JSGcdlA==
   dependencies:
     shelljs "^0.8.4"
 

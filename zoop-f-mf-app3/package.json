@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@com.zooplus/zoop-f-theme": "file:../zoop-f-theme",
-    "@module-federation/nextjs-mf": "0.1.0",
+    "@module-federation/nextjs-mf": "file:../zoop-f-libs/nextjs-mf",
     "bootstrap": "^4.6.0",
     "lodash": "4.17.20",
     "next": "^10.0.8",
