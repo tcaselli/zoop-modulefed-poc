@@ -27,6 +27,7 @@ export const rootReducer = (state, action) => {
 
 export const store = configureStore({
   reducer: rootReducer,
+  devTools: { name: 'App1' },
 });
 
 // If you want to have async dispatch with correct typing

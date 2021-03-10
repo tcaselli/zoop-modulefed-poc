@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './components/Header';
-import Counter from './components/Counter';
+import Counter from './components/Counter/Counter';
 import AppCard from './components/AppCard';
 
 export type AppProps = {

@@ -18,7 +18,7 @@ export const getCount = (state: RootState) => state.counter.count;
 
 // Thunks
 export const fetchCount = createAsyncThunk<{ count: number }, void, { state: RootState }>(
-  'users/fetchCustomer',
+  'counter/fetchCount',
   async (_, { rejectWithValue }) => {
     try {
       const count = await getCounter();
@@ -30,7 +30,7 @@ export const fetchCount = createAsyncThunk<{ count: number }, void, { state: Roo
   },
 );
 
-export const incrementCount = createAsyncThunk('users/postCustomer', async (_, thunkApi) => {
+export const incrementCount = createAsyncThunk('counter/incrementCount', async (_, thunkApi) => {
   try {
     const count = await incrementCounter();
     emitCountEventIncrement(count);
@@ -45,7 +45,9 @@ export const userInfosSlice = createSlice({
   initialState,
   reducers: {
     setCounter: (state, action: PayloadAction<number>) => {
-      state.count = action.payload;
+      if (state.isLoading === false) {
+        state.count = action.payload;
+      }
     },
   },
   extraReducers: (builder) => {
