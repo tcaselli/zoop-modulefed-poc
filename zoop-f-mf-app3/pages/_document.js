@@ -15,7 +15,7 @@ class MyDocument extends Document {
       <Html>
         {patchSharingReact()}
         {patchSharingReactDom()}
-        {/* <script src='http://localhost:1901/remoteEntry.js' /> */}
+        <script src='http://localhost:1901/remoteEntry.js' />
         <Head />
         <body>
           <Main />

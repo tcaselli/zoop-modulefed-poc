@@ -24,7 +24,7 @@ module.exports = {
   },
   plugins: [
     // Removes/cleans build folders and unused assets when rebuilding.
-    new CleanWebpackPlugin(),
+    // new CleanWebpackPlugin(),
     // Copy static assets (not imported in the code)
     new CopyWebpackPlugin({
       patterns: [

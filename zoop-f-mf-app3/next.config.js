@@ -9,7 +9,7 @@ module.exports = {
       name: "app3",
       library: { type: config.output.libraryTarget, name: "app3" },
       remotes: {
-        app1: isServer ? path.resolve(__dirname, "../zoop-f-mf-app1/dist/remoteEntry.js") : "app1", // for client, treat it as a global
+        app1: isServer ? path.resolve(__dirname, "../zoop-f-mf-app1/dist/serverEntry.js") : "app1", // for client, treat it as a global
       },
       exposes: {},
       shared: [],
