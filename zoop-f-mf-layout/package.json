@@ -30,8 +30,8 @@
     "identity-obj-proxy": "^3.0.0"
   },
   "scripts": {
-    "dev": "shop-script start",
-    "start": "concurrently \"shop-script start\" \"cd ../zoop-f-mf-app1; yarn start\" \"cd ../zoop-f-mf-app2; yarn start\" \"cd ../zoop-b-ms-app; mvn spring-boot:run\"",
+    "start": "shop-script start",
+    "dev": "concurrently \"shop-script start\" \"cd ../zoop-f-mf-app1 && yarn start\" \"cd ../zoop-f-mf-app2 && yarn start\" \"cd ../zoop-b-ms-app && mvn spring-boot:run\"",
     "build": "shop-script build",
     "bundle-analysis": "shop-script bundle-analysis",
     "static-analysis": "shop-script static-analysis",
@@ -41,7 +41,7 @@
     "cypress:open": "shop-script cypress:open",
     "cypress:run": "shop-script cypress:run",
     "cypress:install": "shop-script cypress:install",
-    "postinstall": "concurrently \"cd ../zoop-f-mf-app1; yarn\" \"cd ../zoop-f-mf-app2; yarn\""
+    "postinstall": "concurrently \"cd ../zoop-f-mf-app1 && yarn\" \"cd ../zoop-f-mf-app2 && yarn\""
   },
   "eslintConfig": {
     "extends": [
