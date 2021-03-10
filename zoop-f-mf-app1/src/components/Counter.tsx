@@ -1,6 +1,6 @@
 import React, { useEffect, Profiler } from 'react';
 import { Form, InputGroup, Button } from 'react-bootstrap';
-import { useCounter } from '../hooks/useCounter';
+import { useCounter } from '../hooks/useCounterState';
 
 export default function Counter() {
   const { increment, count, fetch } = useCounter();

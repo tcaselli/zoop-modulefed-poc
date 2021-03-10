@@ -2,7 +2,7 @@ import { Card, Form } from 'react-bootstrap';
 
 import React, { Profiler, useLayoutEffect } from 'react';
 import { Button, Header } from '@com.zooplus/f-shared';
-import { useCounter } from './hooks/useCounter';
+import { useCounter } from './hooks/useCounterState';
 
 export type AppProps = {
   className?: string;

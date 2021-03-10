@@ -1,2 +1,3 @@
-export * from './Button';
-export * from './Header';
+export * from './components/Button';
+export * from './components/Header';
+export * from './events/counter';
