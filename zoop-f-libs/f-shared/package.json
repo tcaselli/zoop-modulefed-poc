@@ -22,6 +22,7 @@
   },
   "peerDependencies": {
     "@com.zooplus/zoop-f-theme": ">= 1",
+    "bootstrap": "4.6.0",
     "react": ">=16"
   },
   "husky": {
