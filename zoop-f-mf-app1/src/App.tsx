@@ -4,6 +4,7 @@ import Counter from './components/Counter/Counter';
 import AppCard from './components/AppCard';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
+import './i18n/config';
 
 export type AppProps = {
   className?: string;
