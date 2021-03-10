@@ -28,7 +28,7 @@ export const useInput = ({ id }: Params) => {
   const init = useCallback(() => {
     // search for input with this id and read its value
     const input = document.getElementById(id) as HTMLInputElement;
-    const value = input.value || '';
+    const value = input?.value || '';
     setState({ value: value, status: 'ready' });
   }, [id]);
 

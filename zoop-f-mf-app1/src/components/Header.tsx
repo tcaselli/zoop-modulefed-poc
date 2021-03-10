@@ -18,7 +18,7 @@ export default function Header({ id = 'header' }: Props) {
   return (
     <Profiler id="Header" onRender={console.log}>
       <Alert variant="info">
-        Hello <span>{value || <i>#NO NAME#</i>}</span>
+        Hello <span>{status === 'ready' && value ? value : <i>#NO NAME#</i>}</span>
       </Alert>
     </Profiler>
   );
