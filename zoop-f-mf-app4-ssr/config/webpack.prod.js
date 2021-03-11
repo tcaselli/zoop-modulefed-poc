@@ -10,7 +10,7 @@ const {
   prodPerformanceConfigBase,
 } = require('@com.zooplus/zoop-f-config/config/webpack');
 const { serverConfigBase, clientConfigBase } = require('./webpack.common');
-const paths = require('./paths');
+const path = require('path');
 const deps = require('../package.json').dependencies;
 
 // Set by hand if you want to load environment variables from env file to test prod build without docker compose setting environment variables
@@ -34,27 +34,36 @@ const serverConfig = merge(serverConfigBase, {
       filename: 'assets/css/[name].[contenthash].css',
       chunkFilename: 'assets/css/[id].css',
     }),
-    // new ModuleFederationPlugin({
-    //   name: 'app1',
-    //   filename: 'serverEntry.js',
-    //   library: { type: 'commonjs-module' },
-    //   exposes: {
-    //     './Card': './src/components/AppCard.tsx',
-    //     './Header': './src/components/Header.tsx',
-    //     './Counter': './src/components/Counter/Exposed.tsx',
-    //   },
-    //   remotes: {},
-    //   // ! Do not share treeshaked libraries, it breaks the optimisation.
-    //   shared: [
-    //     { react: { requiredVersion: deps.react } },
-    //     { 'react-dom': { requiredVersion: deps['react-dom'] } },
-    //     'react-router-dom',
-    //     'axios',
-    //     'redux',
-    //     'react-redux',
-    //     '@reduxjs/toolkit',
-    //   ],
-    // }),
+    new ModuleFederationPlugin({
+      name: 'app4',
+      filename: 'serverEntry.js',
+      library: { type: 'commonjs-module' },
+      exposes: {
+        './Title': './src/client/components/Title.js',
+      },
+      remotes: {
+        app1: path.resolve(__dirname, '../zoop-f-mf-app1/dist/serverEntry.js'),
+      },
+      // ! Do not share treeshaked libraries, it breaks the optimisation.
+      shared: {
+        react: {
+          requiredVersion: deps.react,
+          singleton: true,
+        },
+        'react-dom': {
+          singleton: true,
+          requiredVersion: deps['react-dom'],
+        },
+        'react-router-dom': {
+          singleton: true,
+          requiredVersion: deps['react-router-dom'],
+        },
+        axios: {
+          singleton: true,
+          requiredVersion: deps.axios,
+        },
+      },
+    }),
 
     new BundleAnalyzerPlugin({
       analyzerMode: 'disabled',
@@ -88,26 +97,35 @@ const clientConfig = merge(clientConfigBase, {
       chunkFilename: 'assets/css/[id].css',
     }),
     // ModuleFederation configuration
-    // new ModuleFederationPlugin({
-    //   name: 'app1',
-    //   filename: 'remoteEntry.js',
-    //   exposes: {
-    //     './Card': './src/components/AppCard.tsx',
-    //     './Header': './src/components/Header.tsx',
-    //     './Counter': './src/components/Counter/Exposed.tsx',
-    //   },
-    //   remotes: {},
-    //   // ! Do not share treeshaked libraries, it breaks the optimisation.
-    //   shared: [
-    //     { react: { requiredVersion: deps.react } },
-    //     { 'react-dom': { requiredVersion: deps['react-dom'] } },
-    //     'react-router-dom',
-    //     'axios',
-    //     'redux',
-    //     'react-redux',
-    //     '@reduxjs/toolkit',
-    //   ],
-    // }),
+    new ModuleFederationPlugin({
+      name: 'app4',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './Title': './src/client/components/Title.js',
+      },
+      remotes: {
+        app1: 'app1',
+      },
+      // ! Do not share treeshaked libraries, it breaks the optimisation.
+      shared: {
+        react: {
+          requiredVersion: deps.react,
+          singleton: true,
+        },
+        'react-dom': {
+          singleton: true,
+          requiredVersion: deps['react-dom'],
+        },
+        'react-router-dom': {
+          singleton: true,
+          requiredVersion: deps['react-router-dom'],
+        },
+        axios: {
+          singleton: true,
+          requiredVersion: deps.axios,
+        },
+      },
+    }),
 
     new BundleAnalyzerPlugin({
       analyzerMode: 'disabled',

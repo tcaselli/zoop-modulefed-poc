@@ -33,6 +33,7 @@ export default function renderer(req, store, context) {
         <script>window.INITIAL_STATE = ${serialize(store.getState())}</script>
         <script src="main.bundle.js"></script> 
         <script src="vendors.bundle.js"></script> 
+        <script src="http://localhost:1901/remoteEntry.js"></script> 
       </body>
     </html>
   `;
