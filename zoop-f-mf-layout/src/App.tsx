@@ -13,6 +13,8 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
   const { value, onChange } = useInput({ id: 'name' });
 
+  const Title = React.lazy(() => import('app3/Title'));
+
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e?.target?.value;
     onChange(inputValue);
@@ -27,6 +29,9 @@ const Layout = ({ children }: LayoutProps) => {
               <Card.Header>MF Layout</Card.Header>
               <Card.Body>
                 <Form.Group>
+                  <ErrorHandler>
+                    <Title />
+                  </ErrorHandler>
                   <Form.Label>Your Name</Form.Label>
                   <Form.Control
                     id="name"

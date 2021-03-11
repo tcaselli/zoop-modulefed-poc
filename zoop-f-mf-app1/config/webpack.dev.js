@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 const { merge } = require('webpack-merge');
+
 const common = require('./webpack.common');
 const paths = require('./paths');
 const HotModuleReplacementPlugin = require('webpack').HotModuleReplacementPlugin;
@@ -12,7 +13,7 @@ const deps = require('../package.json').dependencies;
 // Load environment variables needed for development
 const dotenv = require('dotenv').config();
 
-module.exports = merge(common, {
+const clientConfig = merge(common, {
   mode: 'development',
   devtool: 'inline-source-map',
   devServer: {
@@ -65,14 +66,6 @@ module.exports = merge(common, {
         '@reduxjs/toolkit',
       ],
     }),
-  ],
-  module: {
-    rules: [...devModuleRulesBase],
-  },
-});
-// Copy service worker for MSW (if env var is enabled) to build directory
-if (Boolean(JSON.parse(process.env.MOCK_WITH_MSW))) {
-  module.exports.plugins.push(
     new CopyWebpackPlugin({
       patterns: [
         {
@@ -81,5 +74,64 @@ if (Boolean(JSON.parse(process.env.MOCK_WITH_MSW))) {
         },
       ],
     }),
-  );
-}
+  ],
+  module: {
+    rules: [...devModuleRulesBase],
+  },
+});
+
+const serverConfig = merge(common, {
+  mode: 'development',
+  devtool: 'inline-source-map',
+  target: 'node',
+  output: {
+    path: paths.build,
+    publicPath: `http://${process.env.DOMAIN}:${process.env.PORT}/`,
+    filename: 'assets/js/[name].[contenthash].node.bundle.js',
+    globalObject: 'this',
+    libraryTarget: 'commonjs-module',
+  },
+  plugins: [
+    // Only update what has changed.
+    new HotModuleReplacementPlugin(),
+    // Make environment variables available within the code
+    new DefinePlugin({
+      'process.env': JSON.stringify(dotenv.parsed),
+    }),
+    // Module federation
+    new ModuleFederationPlugin({
+      name: 'app1',
+      filename: 'serverEntry.js',
+      library: { type: 'commonjs-module' },
+      exposes: {
+        './Card': './src/components/AppCard.tsx',
+        './Header': './src/components/Header.tsx',
+        './Counter': './src/components/Counter/Exposed.tsx',
+      },
+      // ! Do not share treeshaked libraries, it breaks the optimisation.
+      shared: [
+        { react: { requiredVersion: deps.react } },
+        { 'react-dom': { requiredVersion: deps['react-dom'] } },
+        'react-router-dom',
+        'axios',
+        'redux',
+        'react-redux',
+        '@reduxjs/toolkit',
+      ],
+    }),
+
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: `${paths.src}/services/msw/mockServiceWorker.js`,
+          to: `${paths.build}`,
+        },
+      ],
+    }),
+  ],
+  module: {
+    rules: [...devModuleRulesBase],
+  },
+});
+
+module.exports = [serverConfig, clientConfig];

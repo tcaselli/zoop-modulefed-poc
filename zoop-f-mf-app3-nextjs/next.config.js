@@ -5,13 +5,16 @@ module.exports = {
   webpack: (config, options) => {
     const { buildId, dev, isServer, defaultLoaders, webpack } = options;
     const mfConf = {
-      // mergeRuntime: true,
+      mergeRuntime: true,
       name: "app3",
+      // _next/static/runtime/remoteEntry.js
       library: { type: config.output.libraryTarget, name: "app3" },
       remotes: {
         app1: isServer ? path.resolve(__dirname, "../zoop-f-mf-app1/dist/serverEntry.js") : "app1", // for client, treat it as a global
       },
-      exposes: {},
+      exposes: {
+        "./Title": "./components/Title.js",
+      },
       shared: [],
     };
     // Configures ModuleFederation and other Webpack properties

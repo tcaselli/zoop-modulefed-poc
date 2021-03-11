@@ -23,8 +23,6 @@ module.exports = {
     modules: ['node_modules', `${paths.root}/node_modules/@com.zooplus/zoop-f-config/node_modules`],
   },
   plugins: [
-    // Removes/cleans build folders and unused assets when rebuilding.
-    // new CleanWebpackPlugin(),
     // Copy static assets (not imported in the code)
     new CopyWebpackPlugin({
       patterns: [

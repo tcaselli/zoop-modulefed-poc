@@ -1,0 +1,84 @@
+{
+  "name": "react-ssr",
+  "version": "1.0.0",
+  "description": "server side react",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flaviuse/react-ssr.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/flaviuse/react-ssr/issues"
+  },
+  "homepage": "https://github.com/flaviuse/react-ssr#readme",
+  "dependencies": {
+    "@com.zooplus/zoop-f-config": "file:../zoop-f-config",
+    "@com.zooplus/zoop-f-scripts": "file:../zoop-f-scripts",
+    "axios": "0.21.1",
+    "babel-polyfill": "^6.26.0",
+    "compression": "1.7.4",
+    "concurrently": "6.0.0",
+    "dotenv": "^8.2.0",
+    "express": "4.17.1",
+    "express-http-proxy": "1.6.2",
+    "lodash": "4.17.21",
+    "node-polyfill-webpack-plugin": "^1.0.3",
+    "nodemon": "2.0.7",
+    "npm-run-all": "4.1.5",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "react-helmet": "6.1.0",
+    "react-redux": "7.2.2",
+    "react-router-config": "5.1.1",
+    "react-router-dom": "5.2.0",
+    "redux": "4.0.5",
+    "redux-thunk": "2.3.0",
+    "serialize-javascript": "5.0.1",
+    "webpack-node-externals": "^2.5.2"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.31",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.1",
+    "@types/react-router-dom": "^5.1.6"
+  },
+  "scripts": {
+    "start": "shop-script start",
+    "build": "shop-script build",
+    "bundle-analysis": "shop-script bundle-analysis",
+    "static-analysis": "shop-script static-analysis",
+    "static-analysis:fix": "shop-script static-analysis:fix",
+    "jest": "shop-script jest",
+    "jest:once": "shop-script jest:once",
+    "cypress:open": "shop-script cypress:open",
+    "cypress:run": "shop-script cypress:run",
+    "cypress:install": "shop-script cypress:install"
+  },
+  "eslintConfig": {
+    "extends": [
+      "./node_modules/@com.zooplus/zoop-f-config/config/eslintrc"
+    ]
+  },
+  "eslintIgnore": [
+    "config",
+    "/dist",
+    "/node_modules",
+    "/server",
+    ".*.js",
+    "*.js"
+  ],
+  "babel": {
+    "presets": [
+      "./node_modules/@com.zooplus/zoop-f-config/config/babelrc"
+    ]
+  },
+  "husky": {
+    "hooks": {}
+  },
+  "prettier": "./node_modules/@com.zooplus/zoop-f-config/config/prettierrc",
+  "browserslist": [
+    "extends @com.zooplus/zoop-f-config/config/browserslistrc"
+  ]
+}
