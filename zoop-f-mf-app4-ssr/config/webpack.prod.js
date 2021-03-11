@@ -21,8 +21,8 @@ const dotenv = require('dotenv').config();
 // }
 
 const serverConfig = merge(serverConfigBase, {
-  mode: 'production',
-  devtool: false,
+  mode: 'development',
+  devtool: 'inline-source-map',
   plugins: [
     new DefinePlugin({
       'process.env': JSON.stringify(dotenv.parsed),
@@ -39,7 +39,7 @@ const serverConfig = merge(serverConfigBase, {
       filename: 'serverEntry.js',
       library: { type: 'commonjs-module' },
       exposes: {
-        './Title': './src/client/components/Title.js',
+        './Title': './src/client/components/Title.tsx',
       },
       remotes: {
         app1: path.resolve(__dirname, '../zoop-f-mf-app1/dist/serverEntry.js'),
@@ -83,8 +83,8 @@ const serverConfig = merge(serverConfigBase, {
 });
 
 const clientConfig = merge(clientConfigBase, {
-  mode: 'production',
-  devtool: false,
+  mode: 'development',
+  devtool: 'inline-source-map',
   plugins: [
     new DefinePlugin({
       'process.env': JSON.stringify(dotenv.parsed),
@@ -101,10 +101,10 @@ const clientConfig = merge(clientConfigBase, {
       name: 'app4',
       filename: 'remoteEntry.js',
       exposes: {
-        './Title': './src/client/components/Title.js',
+        './Title': './src/client/components/Title.tsx',
       },
       remotes: {
-        app1: 'app1',
+        app1: 'app1@http://localhost:1901/remoteEntry.js',
       },
       // ! Do not share treeshaked libraries, it breaks the optimisation.
       shared: {

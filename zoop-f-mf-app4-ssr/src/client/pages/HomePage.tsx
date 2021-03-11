@@ -1,12 +1,14 @@
 import React from 'react';
-const Header = (await import('app1/Header')).default;
-
+import { lazy, LazyBoundary } from 'react-imported-component';
+const Header = lazy(() => import('app1/Header'));
 function HomePage() {
   return (
     <div>
       <div>I'm the home Test component</div>
       <button onClick={() => console.log('Hi')}>Press me</button>
-      <Header />
+      <LazyBoundary fallback={<p>Loading</p>}>
+        <Header />
+      </LazyBoundary>
     </div>
   );
 }

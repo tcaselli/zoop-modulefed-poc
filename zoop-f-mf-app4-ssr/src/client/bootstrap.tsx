@@ -12,6 +12,7 @@ import { Provider } from 'react-redux';
 import axios from 'axios';
 import reducers from './store/reducers';
 import Routes from './Routes';
+import { rehydrateMarks, ImportedController } from 'react-imported-component';
 
 const axiosInstanceClient = axios.create({
   baseURL: '/api', // /users => /api/users
@@ -33,12 +34,15 @@ const store = createStore(
   // Thunk with extra argument to pass axios instance to action creators of redux.
   composeEnhancers(applyMiddleware(thunk.withExtraArgument(axiosInstanceClient))),
 );
-
-ReactDOM.hydrate(
-  <Provider store={store}>
-    <BrowserRouter>
-      <div>{renderRoutes(Routes)}</div>
-    </BrowserRouter>
-  </Provider>,
-  document.getElementById('root'),
-);
+rehydrateMarks().then(() => {
+  ReactDOM.hydrate(
+    <ImportedController>
+      <Provider store={store}>
+        <BrowserRouter>
+          <div> {renderRoutes(Routes)} </div>
+        </BrowserRouter>
+      </Provider>
+    </ImportedController>,
+    document.getElementById('root'),
+  );
+});

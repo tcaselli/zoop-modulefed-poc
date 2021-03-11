@@ -6,17 +6,22 @@ import { Provider } from 'react-redux';
 import serialize from 'serialize-javascript'; // Avoid XSS attacks
 import { Helmet } from 'react-helmet';
 import Routes from '../client/Routes';
+import { printDrainHydrateMarks } from 'react-imported-component';
 
 // Renderer generate HTML from React and load redux state and append script tag with client bundle.
 export default function renderer(req, store, context) {
-  const content = renderToString(
-    // We pass the url via req.path
-    <Provider store={store}>
-      <StaticRouter location={req.path} context={context}>
-        <div>{renderRoutes(Routes)}</div>
-      </StaticRouter>
-    </Provider>,
-  );
+  const App = () => {
+    return (
+      <Provider store={store}>
+        <StaticRouter location={req.path} context={context}>
+          <div>{renderRoutes(Routes)}</div>
+        </StaticRouter>
+      </Provider>
+    );
+  };
+
+  const content = renderToString(<App />) + printDrainHydrateMarks();
+  // We pass the url via req.path
 
   const helmet = Helmet.renderStatic(); // Returns an object with all the setup tags with Helmet in JSX.
 
@@ -32,8 +37,6 @@ export default function renderer(req, store, context) {
         <div id="root">${content}</div>
         <script>window.INITIAL_STATE = ${serialize(store.getState())}</script>
         <script src="main.bundle.js"></script> 
-        <script src="vendors.bundle.js"></script> 
-        <script src="http://localhost:1901/remoteEntry.js"></script> 
       </body>
     </html>
   `;
