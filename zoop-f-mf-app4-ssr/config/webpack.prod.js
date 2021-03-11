@@ -75,7 +75,7 @@ const serverConfig = merge(serverConfigBase, {
     rules: [...prodModuleRulesBase],
   },
   optimization: {
-    ...prodOptimizationConfigBase,
+    // ...prodOptimizationConfigBase,
   },
   performance: {
     ...prodPerformanceConfigBase,
@@ -137,7 +137,7 @@ const clientConfig = merge(clientConfigBase, {
     rules: [...prodModuleRulesBase],
   },
   optimization: {
-    ...prodOptimizationConfigBase,
+    // ...prodOptimizationConfigBase,
   },
   performance: {
     ...prodPerformanceConfigBase,
