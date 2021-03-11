@@ -1,16 +1,33 @@
 import { Card, Col, Container, Form, Row } from 'react-bootstrap';
-import React, { Profiler, ReactChild, SyntheticEvent } from 'react';
-import { useInput } from '@com.zooplus/f-shared';
-import ErrorHandler from './components/ErrorHandler';
+import { ErrorHandler, useInput } from '@com.zooplus/f-shared';
 
-const App1Card = (await import('app1/Card')).default;
-const App1Header = (await import('app1/Header')).default;
+import React from 'react';
 
-interface LayoutProps {
-  children: ReactChild;
-}
+const App1Wrapper = () => {
+  const App1Counter = React.lazy(() => import('app1/Counter'));
+  const App1Card = React.lazy(() => import('app1/Card'));
+  const App1WelcomeMessage = React.lazy(() => import('app1/WelcomeMessage'));
 
-const Layout = ({ children }: LayoutProps) => {
+  return (
+    <React.Suspense fallback={<div>Loading...</div>}>
+      <App1Card>
+        <App1WelcomeMessage id="name" />
+        <App1Counter />
+      </App1Card>
+    </React.Suspense>
+  );
+};
+
+const App2Wrapper = () => {
+  const App2 = React.lazy(() => import('app2/App2'));
+  return (
+    <React.Suspense fallback={<div>Loading...</div>}>
+      <App2 className="mt-3" />
+    </React.Suspense>
+  );
+};
+
+const App = () => {
   const { value, onChange } = useInput({ id: 'name' });
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,50 +36,34 @@ const Layout = ({ children }: LayoutProps) => {
   };
 
   return (
-    <Profiler id="mf-layout" onRender={console.log}>
-      <Container>
-        <Row>
-          <Col xs="12" lg={{ span: 8, offset: 2 }}>
-            <Card className="mt-3">
-              <Card.Header>MF Layout</Card.Header>
-              <Card.Body>
-                <Form.Group>
-                  <Form.Label>Your Name</Form.Label>
-                  <Form.Control
-                    id="name"
-                    type="text"
-                    placeholder="Please enter your name..."
-                    value={value}
-                    onChange={handleOnChange}
-                  />
-                  <Form.Text className="text-muted">This name will be propagated to App1 via props</Form.Text>
-                </Form.Group>
-                <App1Card>
-                  <App1Header id="name" />
-                </App1Card>
-                {children}
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
-    </Profiler>
-  );
-};
-
-const App = () => {
-  const App1Counter = React.lazy(() => import('app1/Counter'));
-  const App2 = React.lazy(() => import('app2/App2'));
-
-  return (
-    <Profiler id="mf-app" onRender={console.log}>
-      <Layout>
-        <ErrorHandler>
-          <App1Counter />
-          <App2 />
-        </ErrorHandler>
-      </Layout>
-    </Profiler>
+    <Container>
+      <Row>
+        <Col xs="12" lg={{ span: 8, offset: 2 }}>
+          <Card className="mt-3">
+            <Card.Header>MF Layout</Card.Header>
+            <Card.Body>
+              <Form.Group>
+                <Form.Label>Your Name</Form.Label>
+                <Form.Control
+                  id="name"
+                  type="text"
+                  placeholder="Please enter your name..."
+                  value={value}
+                  onChange={handleOnChange}
+                />
+                <Form.Text className="text-muted">This name will be propagated to App1 via props</Form.Text>
+              </Form.Group>
+              <ErrorHandler>
+                <App1Wrapper />
+              </ErrorHandler>
+              <ErrorHandler>
+                <App2Wrapper />
+              </ErrorHandler>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

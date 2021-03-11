@@ -5,7 +5,7 @@ declare module 'app1/Card' {
   export default App1Card;
 }
 
-declare module 'app1/Header' {
+declare module 'app1/WelcomeMessage' {
   // eslint-disable-next-line no-undef
   const App1Header: React.ComponentType<{ id: string }>;
 

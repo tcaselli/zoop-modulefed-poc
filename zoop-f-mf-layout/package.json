@@ -3,10 +3,10 @@
   "version": "1.0.0-SNAPSHOT",
   "private": true,
   "dependencies": {
+    "@com.zooplus/f-shared": "file:../zoop-f-libs/f-shared",
     "@com.zooplus/zoop-f-config": "file:../zoop-f-config",
     "@com.zooplus/zoop-f-scripts": "file:../zoop-f-scripts",
     "@com.zooplus/zoop-f-theme": "file:../zoop-f-theme",
-    "@com.zooplus/f-shared": "file:../zoop-f-libs/f-shared",
     "axios": "^0.21.0",
     "bootstrap": "^4.6.0",
     "react": "^17.0.1",
