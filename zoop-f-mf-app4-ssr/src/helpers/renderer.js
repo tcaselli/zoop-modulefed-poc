@@ -12,7 +12,7 @@ export default function renderer(req, store, context) {
   const content = renderToString(
     // We pass the url via req.path
     <Provider store={store}>
-      <StaticRouter location={req.url} context={context}>
+      <StaticRouter location={req.path} context={context}>
         <div>{renderRoutes(Routes)}</div>
       </StaticRouter>
     </Provider>,
@@ -31,7 +31,8 @@ export default function renderer(req, store, context) {
       <body>
         <div id="root">${content}</div>
         <script>window.INITIAL_STATE = ${serialize(store.getState())}</script>
-        <script src="main.bundle.js"></script>
+        <script src="main.bundle.js"></script> 
+        <script src="vendors.bundle.js"></script> 
       </body>
     </html>
   `;

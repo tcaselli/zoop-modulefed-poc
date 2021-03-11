@@ -25,7 +25,7 @@
     "express-http-proxy": "1.6.2",
     "lodash": "4.17.21",
     "node-polyfill-webpack-plugin": "^1.0.3",
-    "nodemon": "2.0.7",
+    "nodemon": "^2.0.7",
     "npm-run-all": "4.1.5",
     "react": "17.0.1",
     "react-dom": "17.0.1",
@@ -45,8 +45,8 @@
     "@types/react-router-dom": "^5.1.6"
   },
   "scripts": {
-    "start": "shop-script start",
     "build": "shop-script build",
+    "start:server": "node dist/bundle.js",
     "bundle-analysis": "shop-script bundle-analysis",
     "static-analysis": "shop-script static-analysis",
     "static-analysis:fix": "shop-script static-analysis:fix",

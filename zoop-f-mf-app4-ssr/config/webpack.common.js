@@ -6,11 +6,9 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const webpackNodeExternals = require('webpack-node-externals');
 
 const clientConfigBase = {
-  target: 'web',
   entry: paths.clientEntry,
   output: {
     path: paths.clientOut,
-    globalObject: 'this',
     filename: '[name].bundle.js',
     publicPath: `http://${process.env.DOMAIN}:${process.env.PORT}/`,
   },
@@ -49,7 +47,7 @@ const serverConfigBase = {
   output: {
     publicPath: `http://${process.env.DOMAIN}:${process.env.PORT}/`,
     path: paths.serverOut,
-    filename: '[name].bundle.js',
+    filename: 'bundle.js',
     globalObject: 'this',
     libraryTarget: 'commonjs-module',
   },
