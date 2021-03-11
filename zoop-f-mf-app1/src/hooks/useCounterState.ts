@@ -1,16 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
 import { getCounter, incrementCounter } from '../services/appAPI';
-
+import { emitCountEventIncrement, countEventSubscribe, countEventUnsubscribe } from '@com.zooplus/f-shared';
 interface State {
   error: string | null;
   status: 'idle' | 'pending' | 'success' | 'failed';
   count?: number;
-}
-
-type EventListener = (evt: Event) => void;
-
-enum countEvent {
-  increment = 'count/increment',
 }
 
 /**
@@ -62,17 +56,11 @@ export const useCounter = () => {
     });
   };
 
-  const emitCountEventIncrement = (count: number) => {
-    window.dispatchEvent(new CustomEvent(countEvent.increment, { detail: { count } }));
-  };
-
   const subscribe = () =>
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
-      window.addEventListener(countEvent.increment, countEventIncrementHandler as EventListener);
-      return () => {
-        window.removeEventListener(countEvent.increment, countEventIncrementHandler as EventListener);
-      };
+      countEventSubscribe(countEventIncrementHandler);
+      return () => countEventUnsubscribe(countEventIncrementHandler);
     }, []);
 
   return { error, status, count, fetch, increment, subscribe };

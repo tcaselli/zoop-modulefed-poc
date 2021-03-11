@@ -1,19 +1,23 @@
 import React from 'react';
 import Header from './components/Header';
-import Counter from './components/Counter';
+import Counter from './components/Counter/Counter';
 import AppCard from './components/AppCard';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
+import './i18n/config';
 
 export type AppProps = {
   className?: string;
-  userName?: string;
 };
 
-const App: React.FC<AppProps> = ({ className, userName }) => {
+const App: React.FC<AppProps> = ({ className }) => {
   return (
-    <AppCard className={className}>
-      <Header userName={userName} />
-      <Counter />
-    </AppCard>
+    <Provider store={store}>
+      <AppCard className={className}>
+        <Header />
+        <Counter />
+      </AppCard>
+    </Provider>
   );
 };
 

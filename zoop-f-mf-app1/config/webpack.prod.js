@@ -106,16 +106,19 @@ const clientConfig = merge(common, {
       exposes: {
         // './Card': './src/components/AppCard.tsx',
         './Header': './src/components/Header.tsx',
-        './Counter': './src/components/Counter.tsx',
+        './Counter': './src/components/Counter/Exposed.tsx',
       },
       remotes: {},
       // ! Do not share treeshaked libraries, it breaks the optimisation.
-      // shared: [
-      //   { react: { requiredVersion: deps.react } },
-      //   { 'react-dom': { requiredVersion: deps['react-dom'] } },
-      //   'react-router-dom',
-      //   'axios',
-      // ],
+      shared: [
+        { react: { requiredVersion: deps.react } },
+        { 'react-dom': { requiredVersion: deps['react-dom'] } },
+        'react-router-dom',
+        'axios',
+        'redux',
+        'react-redux',
+        '@reduxjs/toolkit',
+      ],
     }),
 
     new BundleAnalyzerPlugin({

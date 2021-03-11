@@ -1,3 +1,0 @@
-{
-  "extends": "./node_modules/@com.zooplus/zoop-f-config/config/tsconfig.json"
-}

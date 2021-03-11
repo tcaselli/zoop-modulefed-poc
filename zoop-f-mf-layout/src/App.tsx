@@ -1,5 +1,6 @@
 import { Card, Col, Container, Form, Row } from 'react-bootstrap';
-import React, { Profiler, ReactChild, useState } from 'react';
+import React, { Profiler, ReactChild, SyntheticEvent } from 'react';
+import { useInput } from '@com.zooplus/f-shared';
 import ErrorHandler from './components/ErrorHandler';
 
 const App1Card = (await import('app1/Card')).default;
@@ -10,11 +11,11 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps) => {
-  const [name, setName] = useState('');
+  const { value, onChange } = useInput({ id: 'name' });
 
-  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-    setName(value);
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e?.target?.value;
+    onChange(inputValue);
   };
 
   return (
@@ -27,11 +28,17 @@ const Layout = ({ children }: LayoutProps) => {
               <Card.Body>
                 <Form.Group>
                   <Form.Label>Your Name</Form.Label>
-                  <Form.Control type="text" placeholder="Please enter your name..." value={name} onChange={onChange} />
+                  <Form.Control
+                    id="name"
+                    type="text"
+                    placeholder="Please enter your name..."
+                    value={value}
+                    onChange={handleOnChange}
+                  />
                   <Form.Text className="text-muted">This name will be propagated to App1 via props</Form.Text>
                 </Form.Group>
                 <App1Card>
-                  <App1Header userName={name} />
+                  <App1Header id="name" />
                 </App1Card>
                 {children}
               </Card.Body>
@@ -46,15 +53,13 @@ const Layout = ({ children }: LayoutProps) => {
 const App = () => {
   const App1Counter = React.lazy(() => import('app1/Counter'));
   const App2 = React.lazy(() => import('app2/App2'));
-  const App3Title = React.lazy(() => import('app3/Title'));
 
   return (
     <Profiler id="mf-app" onRender={console.log}>
       <Layout>
-        <ErrorHandler fallback={<p style={{ backgroundColor: 'red' }}>load</p>}>
+        <ErrorHandler>
           <App1Counter />
           <App2 />
-          <App3Title />
         </ErrorHandler>
       </Layout>
     </Profiler>

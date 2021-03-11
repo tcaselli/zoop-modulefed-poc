@@ -52,7 +52,7 @@ module.exports = merge(common, {
       exposes: {
         './Card': './src/components/AppCard.tsx',
         './Header': './src/components/Header.tsx',
-        './Counter': './src/components/Counter.tsx',
+        './Counter': './src/components/Counter/Exposed.tsx',
       },
       // ! Do not share treeshaked libraries, it breaks the optimisation.
       shared: [
@@ -60,6 +60,9 @@ module.exports = merge(common, {
         { 'react-dom': { requiredVersion: deps['react-dom'] } },
         'react-router-dom',
         'axios',
+        'redux',
+        'react-redux',
+        '@reduxjs/toolkit',
       ],
     }),
   ],
