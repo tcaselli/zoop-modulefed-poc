@@ -21,7 +21,7 @@ const dotenv = require('dotenv').config();
 // }
 
 const serverConfig = merge(serverConfigBase, {
-  mode: 'production',
+  mode: 'development',
   devtool: false,
   plugins: [
     new DefinePlugin({
@@ -71,7 +71,7 @@ const serverConfig = merge(serverConfigBase, {
 });
 
 const clientConfig = merge(clientConfigBase, {
-  mode: 'production',
+  mode: 'development',
   devtool: false,
   plugins: [
     new DefinePlugin({

@@ -19,8 +19,7 @@
       [() => import('app1/Card'), '', 'app1/Card', false] /* from ./src/client/pages/HomePage.tsx */,
       [() => import('app1/Counter'), '', 'app1/Counter', false] /* from ./src/client/pages/HomePage.tsx */,
       [() => import('app1/Header'), '', 'app1/Header', false] /* from ./src/client/pages/HomePage.tsx */,
-      [() => import('app2/App2'), '', 'app2/App2', false] /* from ./src/client/pages/HomePage.tsx */,
-      [() => import('app4/Title'), '', 'app4/Title', false] /* from ./src/client/pages/HomePage.tsx */,
+      [() => import('app2/App'), '', 'app2/App', false] /* from ./src/client/pages/HomePage.tsx */,
     ]);
     
     export default applicationImports;

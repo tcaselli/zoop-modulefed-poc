@@ -21,7 +21,7 @@ const dotenv = require('dotenv').config();
 // }
 
 const serverConfig = merge(serverConfigBase, {
-  mode: 'production',
+  mode: 'development',
   devtool: false,
   plugins: [
     new DefinePlugin({
@@ -68,7 +68,7 @@ const serverConfig = merge(serverConfigBase, {
 });
 
 const clientConfig = merge(clientConfigBase, {
-  mode: 'production',
+  mode: 'development',
   devtool: false,
   plugins: [
     new DefinePlugin({
@@ -87,7 +87,6 @@ const clientConfig = merge(clientConfigBase, {
       filename: 'remoteEntry.js',
       exposes: {
         './App': './src/App.tsx',
-
       },
       // ! Do not share treeshaked libraries, it breaks the optimisation.
       shared: [

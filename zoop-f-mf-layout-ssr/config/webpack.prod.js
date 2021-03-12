@@ -43,6 +43,9 @@ const serverConfig = merge(serverConfigBase, {
         app2: path.resolve(__dirname, '../../zoop-f-mf-app2/dist/serverEntry.js'),
         app4: path.resolve(__dirname, '../../zoop-f-mf-app4-ssr/dist/serverEntry.js'),
       },
+      exposes: {
+        './Title': './src/client/components/Title.tsx',
+      },
       // ! Do not share treeshaked libraries, it breaks the optimisation.
       shared: [
         {
@@ -90,7 +93,10 @@ const clientConfig = merge(clientConfigBase, {
       remotes: {
         app1: 'app1@http://localhost:1901/remoteEntry.js',
         app2: 'app2@http://localhost:1902/remoteEntry.js',
-        app4: 'app2@http://localhost:1904/remoteEntry.js',
+        app4: 'app4@http://localhost:1904/remoteEntry.js',
+      },
+      exposes: {
+        './Title': './src/client/components/Title.tsx',
       },
       // ! Do not share treeshaked libraries, it breaks the optimisation.
       shared: [

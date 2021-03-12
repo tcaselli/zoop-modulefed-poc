@@ -1,5 +1,9 @@
 import React, { ReactElement } from 'react';
 
-export default function NotFound(): ReactElement {
+function NotFoundPage(): ReactElement {
   return <div>404 Not found</div>;
 }
+
+export default {
+  component: NotFoundPage,
+};

@@ -1,6 +1,6 @@
-declare module 'app2/App2' {
+declare module 'app2/App' {
   // eslint-disable-next-line no-undef
-  const App2: React.ComponentType;
+  const App: React.ComponentType;
 
-  export default App2;
+  export default App;
 }

@@ -25,10 +25,10 @@ export default function renderer(req, context) {
       <head>
       ${helmet.title.toString()}
       ${helmet.meta.toString()}
-      <link rel="stylesheet" href="assets/css/25.css">
+      <link rel="stylesheet" href="assets/css/646.css">
       </head>
       <body>
-        <div id="root">${content}</div>
+        <div id="mf-layout">${content}</div>
         <script src="main.bundle.js"></script> 
         <script src="vendors.bundle.js"></script> 
         ${printDrainHydrateMarks()}

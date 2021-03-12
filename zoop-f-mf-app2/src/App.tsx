@@ -1,6 +1,6 @@
 import { Card, Form } from 'react-bootstrap';
 
-import React, { Profiler, useLayoutEffect } from 'react';
+import React, { Profiler, useEffect } from 'react';
 import { Button, Header } from '@com.zooplus/f-shared';
 import { useCounter } from './hooks/useCounterStore';
 import { Provider } from 'react-redux';
@@ -28,7 +28,7 @@ const App: React.FC<AppProps> = () => {
 const CountForm = () => {
   const { count, fetch, subscribe } = useCounter();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     fetch();
   }, [fetch]);
 
