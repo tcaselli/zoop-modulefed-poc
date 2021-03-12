@@ -1,0 +1,85 @@
+{
+  "name": "zoop-f-mf-layout-ssr",
+  "version": "1.0.0-SNAPSHOT",
+  "private": true,
+  "dependencies": {
+    "@com.zooplus/f-shared": "file:../zoop-f-libs/f-shared",
+    "@com.zooplus/zoop-f-config": "file:../zoop-f-config",
+    "@com.zooplus/zoop-f-scripts": "file:../zoop-f-scripts",
+    "@com.zooplus/zoop-f-theme": "file:../zoop-f-theme",
+    "@types/react-redux": "^7.1.16",
+    "@types/react-router-config": "^5.0.2",
+    "axios": "0.16.2",
+    "babel-polyfill": "^6.26.0",
+    "bootstrap": "^4.6.0",
+    "compression": "1.7.4",
+    "concurrently": "6.0.0",
+    "dotenv": "^8.2.0",
+    "express": "4.17.1",
+    "express-http-proxy": "1.6.2",
+    "forgo-lazy": "^1.1.1",
+    "lodash": "4.17.21",
+    "node-polyfill-webpack-plugin": "^1.0.3",
+    "nodemon": "^2.0.7",
+    "npm-run-all": "4.1.5",
+    "react": "17.0.1",
+    "react-bootstrap": "^1.5.2",
+    "react-dom": "17.0.1",
+    "react-helmet": "6.1.0",
+    "react-imported-component": "^6.4.1",
+    "react-redux": "7.2.2",
+    "react-router-config": "5.1.1",
+    "react-router-dom": "5.2.0",
+    "redux": "4.0.5",
+    "redux-thunk": "2.3.0",
+    "terser": "^5.6.0",
+    "webpack-imported": "^1.1.2"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.31",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.1",
+    "@types/react-router-dom": "^5.1.6"
+  },
+  "scripts": {
+    "generate-imported-component": "imported-components src src/imported.ts",
+    "build": "shop-script build",
+    "start:server": "nodemon dist/main.node.bundle.js 80",
+    "bundle-analysis": "shop-script bundle-analysis",
+    "static-analysis": "shop-script static-analysis",
+    "static-analysis:fix": "shop-script static-analysis:fix",
+    "jest": "shop-script jest",
+    "jest:once": "shop-script jest:once",
+    "cypress:open": "shop-script cypress:open",
+    "cypress:run": "shop-script cypress:run",
+    "cypress:install": "shop-script cypress:install"
+  },
+  "eslintConfig": {
+    "extends": [
+      "./node_modules/@com.zooplus/zoop-f-config/config/eslintrc"
+    ]
+  },
+  "eslintIgnore": [
+    "config",
+    "/dist",
+    "/node_modules",
+    "/server",
+    ".*.js",
+    "*.js"
+  ],
+  "babel": {
+    "presets": [
+      "./node_modules/@com.zooplus/zoop-f-config/config/babelrc"
+    ],
+    "plugins": [
+      "react-imported-component/babel"
+    ]
+  },
+  "husky": {
+    "hooks": {}
+  },
+  "prettier": "./node_modules/@com.zooplus/zoop-f-config/config/prettierrc",
+  "browserslist": [
+    "extends @com.zooplus/zoop-f-config/config/browserslistrc"
+  ]
+}

@@ -1,0 +1,54 @@
+import { Card, Col, Container, Form, Row } from 'react-bootstrap';
+import React, { Profiler } from 'react';
+import imported from 'react-imported-component';
+import { useInput } from '@com.zooplus/f-shared';
+
+const App1Card = imported(() => import('app1/Card'));
+const App1Header = imported(() => import('app1/Header'));
+const App1Counter = imported(() => import('app1/Counter'));
+const App2 = imported(() => import('app2/App2'));
+const Title = imported(() => import('app4/Title'));
+
+const HomePage = () => {
+  const { value, onChange } = useInput({ id: 'name' });
+
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e?.target?.value;
+    onChange(inputValue);
+  };
+
+  return (
+    <Profiler id="mf-layout" onRender={console.log}>
+      <Container>
+        <Row>
+          <Col xs="12" lg={{ span: 8, offset: 2 }}>
+            <Card className="mt-3">
+              <Card.Header>MF Layout</Card.Header>
+              <Card.Body>
+                <Form.Group>
+                  <Title />
+                  <Form.Label>Your Name</Form.Label>
+                  <Form.Control
+                    id="name"
+                    type="text"
+                    placeholder="Please enter your name..."
+                    value={value}
+                    onChange={handleOnChange}
+                  />
+                  <Form.Text className="text-muted">This name will be propagated to App1 via props</Form.Text>
+                </Form.Group>
+                <App1Card>
+                  <App1Header id="name" />
+                </App1Card>
+                <App1Counter />
+                <App2 />
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
+    </Profiler>
+  );
+};
+
+export default HomePage;

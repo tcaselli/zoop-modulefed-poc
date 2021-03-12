@@ -41,10 +41,8 @@
     "react-router-dom": "5.2.0",
     "redux": "4.0.5",
     "redux-thunk": "2.3.0",
-    "serialize-javascript": "5.0.1",
     "terser": "^5.6.0",
-    "webpack-imported": "^1.1.2",
-    "webpack-node-externals": "^2.5.2"
+    "webpack-imported": "^1.1.2"
   },
   "devDependencies": {
     "@types/node": "^14.14.31",
