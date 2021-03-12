@@ -1,6 +1,6 @@
 // Regenerator Runtime error (async await syntax) polyfill
 import 'babel-polyfill';
-
+import '../imported';
 // Startup point for the client side application.
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -34,6 +34,7 @@ const store = createStore(
   // Thunk with extra argument to pass axios instance to action creators of redux.
   composeEnhancers(applyMiddleware(thunk.withExtraArgument(axiosInstanceClient))),
 );
+
 rehydrateMarks().then(() => {
   ReactDOM.hydrate(
     <ImportedController>

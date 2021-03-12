@@ -14,8 +14,8 @@
     // 3) use .imported.js to control this table generation (refer to the README - https://github.com/theKashey/react-imported-component/#-imported-js)
     
     const applicationImports = assignImportedComponents([
-      [() => import('./client/bootstrap'), '', './src/client/bootstrap', false] /* from ./src/client/client.ts */,
-      [() => import('app1/Header'), '', 'app1/Header', false] /* from ./src/client/pages/HomePage.tsx */,
+      [() => import('./client/bootstrap'), '', './src/client/bootstrap', false] /* from ./src/client/index.tsx */,
+      [() => import('app1/Test'), '', 'app1/Test', false] /* from ./src/client/pages/HomePage.tsx */,
     ]);
     
     export default applicationImports;

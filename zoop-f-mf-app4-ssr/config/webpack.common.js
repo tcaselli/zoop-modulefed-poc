@@ -5,6 +5,48 @@ const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const webpackNodeExternals = require('webpack-node-externals');
 
+const serverConfigBase = {
+  target: 'node',
+  entry: paths.serverEntry,
+  output: {
+    publicPath: `http://${process.env.DOMAIN}:${process.env.PORT}/`,
+    path: paths.serverOut,
+    filename: 'bundle.js',
+    globalObject: 'this',
+    libraryTarget: 'commonjs-module',
+  },
+  externals: [webpackNodeExternals({ allowlist: [/^webpack\/container\/reference\//] })],
+
+  resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    mainFields: ['browser', 'module', 'main'],
+  },
+  // These options change how loaders are resolved.
+  // postcss-loader is in a nested node_module directory, to be able to resolve it we need to add this nested node_modules to the resolve loader
+  resolveLoader: {
+    modules: ['node_modules', `${paths.root}/node_modules/@com.zooplus/zoop-f-config/node_modules`],
+  },
+  // Determine how modules within the project are treated.
+  module: {
+    rules: [...commonModulesRulesBase],
+  },
+  plugins: [
+    /**
+     * All files inside webpack's output.path directory will be removed once, but the
+     * directory itself will not be. If using webpack 4+'s default configuration,
+     * everything under <PROJECT_DIR>/dist/ will be removed.
+     * Use cleanOnceBeforeBuildPatterns to override this behavior.
+     *
+     * During rebuilds, all webpack assets that are not used anymore
+     * will be removed automatically.
+     *
+     * See `Options and Defaults` for information
+     */
+    new CleanWebpackPlugin(),
+    new NodePolyfillPlugin(),
+  ],
+};
+
 const clientConfigBase = {
   entry: paths.clientEntry,
   output: {
@@ -38,48 +80,6 @@ const clientConfigBase = {
      * See `Options and Defaults` for information
      */
     new CleanWebpackPlugin(),
-  ],
-};
-
-const serverConfigBase = {
-  target: 'node',
-  entry: paths.serverEntry,
-  output: {
-    publicPath: `http://${process.env.DOMAIN}:${process.env.PORT}/`,
-    path: paths.serverOut,
-    filename: 'bundle.js',
-    globalObject: 'this',
-    libraryTarget: 'commonjs-module',
-  },
-  externals: [webpackNodeExternals()],
-
-  resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx'],
-    mainFields: ['browser', 'module', 'main'],
-  },
-  // These options change how loaders are resolved.
-  // postcss-loader is in a nested node_module directory, to be able to resolve it we need to add this nested node_modules to the resolve loader
-  resolveLoader: {
-    modules: ['node_modules', `${paths.root}/node_modules/@com.zooplus/zoop-f-config/node_modules`],
-  },
-  // Determine how modules within the project are treated.
-  module: {
-    rules: [...commonModulesRulesBase],
-  },
-  plugins: [
-    /**
-     * All files inside webpack's output.path directory will be removed once, but the
-     * directory itself will not be. If using webpack 4+'s default configuration,
-     * everything under <PROJECT_DIR>/dist/ will be removed.
-     * Use cleanOnceBeforeBuildPatterns to override this behavior.
-     *
-     * During rebuilds, all webpack assets that are not used anymore
-     * will be removed automatically.
-     *
-     * See `Options and Defaults` for information
-     */
-    new CleanWebpackPlugin(),
-    new NodePolyfillPlugin(),
   ],
 };
 

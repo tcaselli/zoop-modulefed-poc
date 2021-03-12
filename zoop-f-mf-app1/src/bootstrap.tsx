@@ -1,4 +1,4 @@
-// import './styles/boostrap.scss';
+import './styles/boostrap.scss';
 
 import React, { useEffect } from 'react';
 

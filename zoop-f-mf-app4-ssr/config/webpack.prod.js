@@ -42,24 +42,22 @@ const serverConfig = merge(serverConfigBase, {
         './Title': './src/client/components/Title.tsx',
       },
       remotes: {
-        app1: path.resolve(__dirname, '../zoop-f-mf-app1/dist/serverEntry.js'),
+        app1: path.resolve(__dirname, '../../zoop-f-mf-app1/dist/serverEntry.js'),
       },
       // ! Do not share treeshaked libraries, it breaks the optimisation.
       shared: {
         react: {
           requiredVersion: deps.react,
           singleton: true,
+          eager: true,
         },
         'react-dom': {
-          singleton: true,
           requiredVersion: deps['react-dom'],
         },
         'react-router-dom': {
-          singleton: true,
           requiredVersion: deps['react-router-dom'],
         },
         axios: {
-          singleton: true,
           requiredVersion: deps.axios,
         },
       },
@@ -110,18 +108,19 @@ const clientConfig = merge(clientConfigBase, {
       shared: {
         react: {
           requiredVersion: deps.react,
-          singleton: true,
+          // singleton: true,
         },
         'react-dom': {
-          singleton: true,
+          // eager: true,
+          // singleton: true,
           requiredVersion: deps['react-dom'],
         },
         'react-router-dom': {
-          singleton: true,
+          // singleton: true,
           requiredVersion: deps['react-router-dom'],
         },
         axios: {
-          singleton: true,
+          // singleton: true,
           requiredVersion: deps.axios,
         },
       },

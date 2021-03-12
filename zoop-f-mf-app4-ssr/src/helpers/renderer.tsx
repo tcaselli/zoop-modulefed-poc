@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import serialize from 'serialize-javascript'; // Avoid XSS attacks
 import { Helmet } from 'react-helmet';
 import Routes from '../client/Routes';
-import { printDrainHydrateMarks } from 'react-imported-component';
+import { printDrainHydrateMarks, whenComponentsReady } from 'react-imported-component';
 
 // Renderer generate HTML from React and load redux state and append script tag with client bundle.
 export default function renderer(req, store, context) {
@@ -20,7 +20,7 @@ export default function renderer(req, store, context) {
     );
   };
 
-  const content = renderToString(<App />) + printDrainHydrateMarks();
+  const content = renderToString(<App />);
   // We pass the url via req.path
 
   const helmet = Helmet.renderStatic(); // Returns an object with all the setup tags with Helmet in JSX.
@@ -36,7 +36,8 @@ export default function renderer(req, store, context) {
       <body>
         <div id="root">${content}</div>
         <script>window.INITIAL_STATE = ${serialize(store.getState())}</script>
-        <script src="main.bundle.js"></script> 
+        <script defer="defer" src="main.bundle.js"></script> 
+        ${printDrainHydrateMarks()}
       </body>
     </html>
   `;

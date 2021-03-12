@@ -4,14 +4,16 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const paths = require('./paths');
 const { commonModulesRulesBase } = require('@com.zooplus/zoop-f-config/config/webpack');
+const dotenv = require('dotenv').config();
 
-module.exports = {
+const clientConfigBase = {
   entry: [`${paths.src}/index.tsx`],
   target: 'web',
   output: {
     path: paths.build,
-    filename: 'assets/js/[name].bundle.js',
-    publicPath: '/',
+    publicPath: `http://${process.env.DOMAIN}:${process.env.PORT}/`,
+    filename: 'assets/js/[name].[contenthash].bundle.js',
+    globalObject: 'this',
   },
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
@@ -47,3 +49,31 @@ module.exports = {
     rules: [...commonModulesRulesBase],
   },
 };
+
+const serverConfigBase = {
+  entry: [`${paths.src}/index.tsx`],
+  target: 'node',
+  output: {
+    path: paths.build,
+    publicPath: `http://${process.env.DOMAIN}:${process.env.PORT}/`,
+    filename: 'assets/js/[name].[contenthash].node.bundle.js',
+    globalObject: 'this',
+    libraryTarget: 'commonjs-module',
+  },
+  resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    mainFields: ['browser', 'module', 'main'],
+  },
+  // These options change how loaders are resolved.
+  // postcss-loader is in a nested node_module directory, to be able to resolve it we need to add this nested node_modules to the resolve loader
+  resolveLoader: {
+    modules: ['node_modules', `${paths.root}/node_modules/@com.zooplus/zoop-f-config/node_modules`],
+  },
+  plugins: [new CleanWebpackPlugin()],
+  // Determine how modules within the project are treated.
+  module: {
+    rules: [...commonModulesRulesBase],
+  },
+};
+
+module.exports = { serverConfigBase, clientConfigBase };

@@ -41,6 +41,7 @@
     "redux-thunk": "2.3.0",
     "serialize-javascript": "5.0.1",
     "terser": "^5.6.0",
+    "webpack-imported": "^1.1.2",
     "webpack-node-externals": "^2.5.2"
   },
   "devDependencies": {
@@ -50,7 +51,7 @@
     "@types/react-router-dom": "^5.1.6"
   },
   "scripts": {
-    "generate-imported-component": "imported-components src src/imported.js",
+    "generate-imported-component": "imported-components src/client src/imported.ts",
     "build": "shop-script build",
     "start:server": "node dist/bundle.js",
     "bundle-analysis": "shop-script bundle-analysis",
@@ -80,8 +81,7 @@
       "./node_modules/@com.zooplus/zoop-f-config/config/babelrc"
     ],
     "plugins": [
-      "react-imported-component/babel",
-      "babel-plugin-dynamic-import-node"
+      "react-imported-component/babel"
     ]
   },
   "husky": {
