@@ -21,7 +21,7 @@ const dotenv = require('dotenv').config();
 // }
 
 module.exports = merge(common, {
-  mode: 'development',
+  mode: 'production',
   devtool: false,
   output: {
     path: paths.build,
