@@ -3,7 +3,6 @@ const paths = require('./paths');
 const { commonModulesRulesBase } = require('@com.zooplus/zoop-f-config/config/webpack');
 const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const webpackNodeExternals = require('webpack-node-externals');
 
 const serverConfigBase = {
   target: 'async-node',
@@ -15,7 +14,6 @@ const serverConfigBase = {
     globalObject: 'this',
     libraryTarget: 'commonjs-module',
   },
-  // externals: [webpackNodeExternals({ allowlist: [/^webpack\/container\/reference\//] })],
 
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],

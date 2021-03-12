@@ -43,7 +43,10 @@
   },
   "scripts": {
     "generate-imported-component": "imported-components src src/imported.ts",
-    "dev": "concurrently \"yarn start:server\" \"cd ../zoop-f-mf-app1 && node dist/server.js\" \"cd ../zoop-f-mf-app2 && node dist/server.js\" \"cd ../zoop-f-mf-app4-ssr && yarn start:server\"  \"cd ../zoop-b-ms-app && mvn spring-boot:run\"",
+    "start:frontend": "concurrently \"yarn start:server\" \"cd ../zoop-f-mf-app1 && node dist/server.js\" \"cd ../zoop-f-mf-app2 && node dist/server.js\" \"cd ../zoop-f-mf-app4-ssr && yarn start:server\"",
+    "start:backend": "cd ../zoop-b-ms-app && mvn spring-boot:run",
+    "install:deps": "concurrently \"cd ../zoop-f-mf-app1 && yarn\" \"cd ../zoop-f-mf-app2 && yarn\" \"cd ../zoop-f-mf-app4-ssr && yarn\"  \"cd ../zoop-b-ms-app && mvn install\"",
+    "build:frontend": "concurrently \"yarn build\"  \"cd ../zoop-f-mf-app1 && yarn build\" \"cd ../zoop-f-mf-app2 && yarn build\" \"cd ../zoop-f-mf-app4-ssr && yarn build\"",
     "build": "shop-script build",
     "start:server": "nodemon dist/main.node.bundle.js 80",
     "bundle-analysis": "shop-script bundle-analysis",
