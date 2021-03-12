@@ -32,6 +32,7 @@ export default function renderer(req, store, context) {
       <head>
       ${helmet.title.toString()}
       ${helmet.meta.toString()}
+      <link rel="stylesheet" href="assets/css/src_client_bootstrap_tsx-src_imported_ts.css">
       </head>
       <body>
         <div id="root">${content}</div>

@@ -13,6 +13,7 @@ import axios from 'axios';
 import reducers from './store/reducers';
 import Routes from './Routes';
 import { rehydrateMarks, ImportedController } from 'react-imported-component';
+import './styles/boostrap.scss';
 
 const axiosInstanceClient = axios.create({
   baseURL: '/api', // /users => /api/users
