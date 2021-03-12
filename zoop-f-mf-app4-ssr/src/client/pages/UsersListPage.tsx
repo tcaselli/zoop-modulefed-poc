@@ -1,31 +1,31 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { fetchUsers } from "../store/actions";
-import { Helmet } from "react-helmet";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchUsers } from '../store/actions';
+import { Helmet } from 'react-helmet';
 
 class UsersListPage extends Component {
-  componentDidMount() {
+  public componentDidMount() {
     // if (!this.props.users) {
     // Does not fetch if it has been done on the server side.
     this.props.fetchUsers();
     // }
   }
 
-  renderUsers() {
+  public renderUsers() {
     return this.props.users.map((user) => <li key={user.id}>{user.name}</li>);
   }
 
-  head() {
+  public head() {
     // Use a single string if you make dynamicly generated head tags.
     return (
       <Helmet>
         <title>{`${this.props.users.length} Users`}</title>
-        <meta property='og:title' content='Users App' />
+        <meta property="og:title" content="Users App" />
       </Helmet>
     );
   }
 
-  render() {
+  public render() {
     return (
       <div>
         {this.head()}

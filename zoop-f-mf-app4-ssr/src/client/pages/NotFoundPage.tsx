@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 function NotFoundPage({ staticContext = {} }) {
   // Default because it does not exist on the browser

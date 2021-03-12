@@ -80,7 +80,9 @@
     ]
   },
   "husky": {
-    "hooks": {}
+    "hooks": {
+      "pre-commit": "shop-script pre-commit"
+    }
   },
   "prettier": "./node_modules/@com.zooplus/zoop-f-config/config/prettierrc",
   "browserslist": [

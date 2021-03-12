@@ -1,21 +1,21 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import requireAuth from "../components/requireAuth";
-import { fetchAdmins } from "../store/actions";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import requireAuth from '../components/requireAuth';
+import { fetchAdmins } from '../store/actions';
 
 class AdminsListPage extends Component {
-  componentDidMount() {
+  public componentDidMount() {
     // if (!this.props.admins) {
     // Does not fetch if it has been done on the server side.
     this.props.fetchAdmins();
     // }
   }
 
-  renderAdmins() {
+  public renderAdmins() {
     return this.props.admins.map((admin) => <li key={admin.id}>{admin.name}</li>);
   }
 
-  render() {
+  public render() {
     return (
       <div>
         List of Admins:
