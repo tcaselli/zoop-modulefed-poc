@@ -45,22 +45,12 @@ const serverConfig = merge(serverConfigBase, {
         app1: path.resolve(__dirname, '../../zoop-f-mf-app1/dist/serverEntry.js'),
       },
       // ! Do not share treeshaked libraries, it breaks the optimisation.
-      shared: {
-        react: {
-          requiredVersion: deps.react,
-          singleton: true,
-          eager: true,
+      shared: [
+        {
+          react: { requiredVersion: deps.react, eager: true },
+          'react-dom': { requiredVersion: deps['react-dom'], eager: true },
         },
-        'react-dom': {
-          requiredVersion: deps['react-dom'],
-        },
-        'react-router-dom': {
-          requiredVersion: deps['react-router-dom'],
-        },
-        axios: {
-          requiredVersion: deps.axios,
-        },
-      },
+      ],
     }),
 
     new BundleAnalyzerPlugin({
@@ -73,7 +63,7 @@ const serverConfig = merge(serverConfigBase, {
     rules: [...prodModuleRulesBase],
   },
   optimization: {
-    // ...prodOptimizationConfigBase,
+    ...prodOptimizationConfigBase,
   },
   performance: {
     ...prodPerformanceConfigBase,
@@ -105,25 +95,12 @@ const clientConfig = merge(clientConfigBase, {
         app1: 'app1@http://localhost:1901/remoteEntry.js',
       },
       // ! Do not share treeshaked libraries, it breaks the optimisation.
-      shared: {
-        react: {
-          requiredVersion: deps.react,
-          // singleton: true,
+      shared: [
+        {
+          react: { requiredVersion: deps.react, eager: true },
+          'react-dom': { requiredVersion: deps['react-dom'], eager: true },
         },
-        'react-dom': {
-          // eager: true,
-          // singleton: true,
-          requiredVersion: deps['react-dom'],
-        },
-        'react-router-dom': {
-          // singleton: true,
-          requiredVersion: deps['react-router-dom'],
-        },
-        axios: {
-          // singleton: true,
-          requiredVersion: deps.axios,
-        },
-      },
+      ],
     }),
 
     new BundleAnalyzerPlugin({
@@ -136,7 +113,7 @@ const clientConfig = merge(clientConfigBase, {
     rules: [...prodModuleRulesBase],
   },
   optimization: {
-    // ...prodOptimizationConfigBase,
+    ...prodOptimizationConfigBase,
   },
   performance: {
     ...prodPerformanceConfigBase,

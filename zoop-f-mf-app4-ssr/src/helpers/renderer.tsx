@@ -3,10 +3,10 @@ import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
 import { Provider } from 'react-redux';
-import serialize from 'serialize-javascript'; // Avoid XSS attacks
 import { Helmet } from 'react-helmet';
 import Routes from '../client/Routes';
-import { printDrainHydrateMarks, whenComponentsReady } from 'react-imported-component';
+
+import { printDrainHydrateMarks } from 'react-imported-component';
 
 // Renderer generate HTML from React and load redux state and append script tag with client bundle.
 export default function renderer(req, store, context) {
@@ -35,8 +35,9 @@ export default function renderer(req, store, context) {
       </head>
       <body>
         <div id="root">${content}</div>
-        <script>window.INITIAL_STATE = ${serialize(store.getState())}</script>
+        <script>window.INITIAL_STATE = ${store.getState()}</script>
         <script defer="defer" src="main.bundle.js"></script> 
+        <script defer="defer" src="vendors.bundle.js"></script> 
         ${printDrainHydrateMarks()}
       </body>
     </html>

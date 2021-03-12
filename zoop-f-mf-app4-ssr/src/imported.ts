@@ -15,7 +15,7 @@
     
     const applicationImports = assignImportedComponents([
       [() => import('./client/bootstrap'), '', './src/client/bootstrap', false] /* from ./src/client/index.tsx */,
-      [() => import('app1/Test'), '', 'app1/Test', false] /* from ./src/client/pages/HomePage.tsx */,
+      [() => import('app1/Counter'), '', 'app1/Counter', false] /* from ./src/client/pages/HomePage.tsx */,
     ]);
     
     export default applicationImports;

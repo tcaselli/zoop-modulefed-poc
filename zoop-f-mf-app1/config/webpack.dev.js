@@ -57,13 +57,10 @@ const clientConfig = merge(clientConfigBase, {
       },
       // ! Do not share treeshaked libraries, it breaks the optimisation.
       shared: [
-        { react: { requiredVersion: deps.react } },
-        { 'react-dom': { requiredVersion: deps['react-dom'] } },
-        'react-router-dom',
-        'axios',
-        'redux',
-        'react-redux',
-        '@reduxjs/toolkit',
+        {
+          react: deps.react,
+          'react-dom': deps['react-dom'],
+        },
       ],
     }),
     new CopyWebpackPlugin({
@@ -103,13 +100,10 @@ const serverConfig = merge(serverConfigBase, {
       },
       // ! Do not share treeshaked libraries, it breaks the optimisation.
       shared: [
-        { react: { requiredVersion: deps.react } },
-        { 'react-dom': { requiredVersion: deps['react-dom'] } },
-        'react-router-dom',
-        'axios',
-        'redux',
-        'react-redux',
-        '@reduxjs/toolkit',
+        {
+          react: deps.react,
+          'react-dom': deps['react-dom'],
+        },
       ],
     }),
   ],

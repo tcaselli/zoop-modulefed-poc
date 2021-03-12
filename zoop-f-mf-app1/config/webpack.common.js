@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const paths = require('./paths');
 const { commonModulesRulesBase } = require('@com.zooplus/zoop-f-config/config/webpack');
-const dotenv = require('dotenv').config();
+require('dotenv').config();
 
 const clientConfigBase = {
   entry: [`${paths.src}/index.tsx`],
@@ -52,7 +51,7 @@ const clientConfigBase = {
 
 const serverConfigBase = {
   entry: [`${paths.src}/index.tsx`],
-  target: 'node',
+  target: 'async-node',
   output: {
     path: paths.build,
     publicPath: `http://${process.env.DOMAIN}:${process.env.PORT}/`,
@@ -69,7 +68,6 @@ const serverConfigBase = {
   resolveLoader: {
     modules: ['node_modules', `${paths.root}/node_modules/@com.zooplus/zoop-f-config/node_modules`],
   },
-  plugins: [new CleanWebpackPlugin()],
   // Determine how modules within the project are treated.
   module: {
     rules: [...commonModulesRulesBase],

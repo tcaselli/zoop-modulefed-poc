@@ -1,12 +1,12 @@
 import React from 'react';
-import importedComponent from 'react-imported-component';
-const Test = importedComponent(() => import('app1/Test'));
+import imported from 'react-imported-component';
+const Counter = imported(() => import('app1/Counter'));
 function HomePage() {
   return (
     <div>
       <div>I'm the home Test component</div>
       <button onClick={() => console.log('Hi')}>Press me</button>
-      <Test />
+      <Counter />
     </div>
   );
 }

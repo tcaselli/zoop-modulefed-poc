@@ -51,9 +51,9 @@
     "@types/react-router-dom": "^5.1.6"
   },
   "scripts": {
-    "generate-imported-component": "imported-components src/client src/imported.ts",
+    "generate-imported-component": "imported-components src src/imported.ts",
     "build": "shop-script build",
-    "start:server": "node dist/bundle.js",
+    "start:server": "nodemon --inspect dist/main.node.bundle.js",
     "bundle-analysis": "shop-script bundle-analysis",
     "static-analysis": "shop-script static-analysis",
     "static-analysis:fix": "shop-script static-analysis:fix",

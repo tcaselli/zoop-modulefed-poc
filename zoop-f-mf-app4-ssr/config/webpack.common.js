@@ -6,16 +6,16 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const webpackNodeExternals = require('webpack-node-externals');
 
 const serverConfigBase = {
-  target: 'node',
+  target: 'async-node',
   entry: paths.serverEntry,
   output: {
     publicPath: `http://${process.env.DOMAIN}:${process.env.PORT}/`,
     path: paths.serverOut,
-    filename: 'bundle.js',
+    filename: '[name].node.bundle.js',
     globalObject: 'this',
     libraryTarget: 'commonjs-module',
   },
-  externals: [webpackNodeExternals({ allowlist: [/^webpack\/container\/reference\//] })],
+  // externals: [webpackNodeExternals({ allowlist: [/^webpack\/container\/reference\//] })],
 
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
@@ -53,6 +53,7 @@ const clientConfigBase = {
     path: paths.clientOut,
     filename: '[name].bundle.js',
     publicPath: `http://${process.env.DOMAIN}:${process.env.PORT}/`,
+    globalObject: 'this',
   },
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
