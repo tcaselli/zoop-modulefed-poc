@@ -25,7 +25,7 @@ export default function renderer(req, context) {
       <head>
       ${helmet.title.toString()}
       ${helmet.meta.toString()}
-      <link rel="stylesheet" href="assets/css/20.css">
+      <link rel="stylesheet" type="text/css" href="assets/css/428.css">
       </head>
       <body>
         <div id="mf-layout">${content}</div>

@@ -2,6 +2,7 @@ import { Card, Col, Container, Form, Row } from 'react-bootstrap';
 import React, { Profiler } from 'react';
 import imported from 'react-imported-component';
 import Input from './../components/Input';
+import logo from './../assets/zooplus.jpg';
 const App1Card = imported(() => import('app1/Card'));
 const App1Header = imported(() => import('app1/Header'));
 const App1Counter = imported(() => import('app1/Counter'));
@@ -11,6 +12,9 @@ const HomePage = () => {
   return (
     <Profiler id="mf-layout" onRender={console.log}>
       <Container>
+        <Row className="flex justify-content-center align-content-center">
+          <img height="80px" src={logo} />
+        </Row>
         <Row>
           <Col xs="12" lg={{ span: 8, offset: 2 }}>
             <Card className="mt-3">
