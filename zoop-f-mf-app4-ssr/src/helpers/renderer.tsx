@@ -10,17 +10,13 @@ import { printDrainHydrateMarks } from 'react-imported-component';
 
 // Renderer generate HTML from React and load redux state and append script tag with client bundle.
 export default function renderer(req, store, context) {
-  const App = () => {
-    return (
-      <Provider store={store}>
-        <StaticRouter location={req.path} context={context}>
-          <div>{renderRoutes(Routes)}</div>
-        </StaticRouter>
-      </Provider>
-    );
-  };
-
-  const content = renderToString(<App />);
+  const content = renderToString(
+    <Provider store={store}>
+      <StaticRouter location={req.path} context={context}>
+        <div>{renderRoutes(Routes)}</div>
+      </StaticRouter>
+    </Provider>,
+  );
   // We pass the url via req.path
 
   const helmet = Helmet.renderStatic(); // Returns an object with all the setup tags with Helmet in JSX.
@@ -36,9 +32,9 @@ export default function renderer(req, store, context) {
       </head>
       <body>
         <div id="root">${content}</div>
-        <script>window.INITIAL_STATE = ${store.getState()}</script>
-        <script defer="defer" src="main.bundle.js"></script> 
-        <script defer="defer" src="vendors.bundle.js"></script> 
+        <script>window.INITIAL_STATE = ${JSON.stringify(store.getState()).replace(/</g, '\\u003c')}</script>
+        <script src="main.bundle.js"></script> 
+        <script src="vendors.bundle.js"></script> 
         ${printDrainHydrateMarks()}
       </body>
     </html>

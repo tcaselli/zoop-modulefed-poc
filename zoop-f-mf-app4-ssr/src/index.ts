@@ -36,7 +36,6 @@ app.use(express.static('public')); // Tell express that this folder is accessibl
 app.get('*', (req, res) => {
   // Create Redux store before rendering the html
   const store = createStore(req); // reference to server side redux store.
-
   // Data Loading logic
   // execute loadData functions for each components and returning an array of promises that we can wait to resolve.
   const promises = matchRoutes(Routes, req.path)
@@ -57,6 +56,7 @@ app.get('*', (req, res) => {
   Promise.all(promises).then(() => {
     // Context of the route, is used to get informations from static router.
     const context = {};
+
     // Server side store is now built correctly.
     // Renderer generate HTML from React and append script tag with client bundle.
     const content = renderer(req, store, context);
