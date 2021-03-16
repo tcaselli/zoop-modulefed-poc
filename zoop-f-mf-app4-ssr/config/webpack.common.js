@@ -3,6 +3,7 @@ const paths = require('./paths');
 const { commonModulesRulesBase } = require('@com.zooplus/zoop-f-config/config/webpack');
 const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const serverConfigBase = {
   target: 'async-node',
@@ -79,6 +80,14 @@ const clientConfigBase = {
      * See `Options and Defaults` for information
      */
     new CleanWebpackPlugin(),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: `${paths.clientEntryFolder}/assets/public`,
+          to: `${paths.clientOut}/assets/public`,
+        },
+      ],
+    }),
   ],
 };
 
