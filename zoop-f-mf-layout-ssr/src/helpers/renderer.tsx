@@ -23,8 +23,11 @@ export default function renderer(req, context) {
   return `
     <html>
       <head>
+      <title>Layout SSR</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
       ${helmet.title.toString()}
       ${helmet.meta.toString()}
+      <link rel="shortcut icon" type="image/ico" href="assets/public/favicon.ico" />
       <link rel="stylesheet" type="text/css" href="assets/css/428.css">
       </head>
       <body>

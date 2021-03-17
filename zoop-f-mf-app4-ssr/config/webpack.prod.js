@@ -97,8 +97,8 @@ const clientConfig = merge(clientConfigBase, {
       // ! Do not share treeshaked libraries, it breaks the optimisation.
       shared: [
         {
-          react: { requiredVersion: deps.react, eager: true },
-          'react-dom': { requiredVersion: deps['react-dom'], eager: true },
+          react: { requiredVersion: deps.react, singleton: true },
+          'react-dom': { requiredVersion: deps['react-dom'], singleton: true },
         },
       ],
     }),
